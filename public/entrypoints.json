@@ -1,0 +1,94 @@
+{
+  "app": {
+    "js": [
+      "js/runtime.3467c1.js",
+      "js/app.a99e14.js"
+    ],
+    "css": [
+      "css/app.a457be.css"
+    ],
+    "dependencies": []
+  },
+  "editor": {
+    "js": [
+      "js/runtime.3467c1.js",
+      "js/editor.841b75.js"
+    ],
+    "css": [
+      "css/editor.e73d2a.css"
+    ],
+    "dependencies": [
+      "wp-data",
+      "wp-hooks"
+    ]
+  },
+  "peopleGrid": {
+    "js": [
+      "js/runtime.3467c1.js",
+      "js/peopleGrid.ef8161.js"
+    ],
+    "css": [
+      "css/peopleGrid.c5bdbc.css"
+    ],
+    "dependencies": [
+      "lodash"
+    ]
+  },
+  "companyGrid": {
+    "js": [
+      "js/runtime.3467c1.js",
+      "js/companyGrid.cc9cb4.js"
+    ],
+    "css": [
+      "css/companyGrid.a57a8d.css"
+    ],
+    "dependencies": [
+      "lodash"
+    ]
+  },
+  "postGridFilter": {
+    "js": [
+      "js/runtime.3467c1.js",
+      "js/postGridFilter.9d049b.js"
+    ],
+    "css": [
+      "css/postGridFilter.a57a8d.css"
+    ],
+    "dependencies": [
+      "lodash"
+    ]
+  },
+  "interactiveMap": {
+    "js": [
+      "js/runtime.3467c1.js",
+      "js/interactiveMap.9517b2.js"
+    ],
+    "css": [
+      "css/interactiveMap.ac23ca.css"
+    ],
+    "dependencies": [
+      "lodash"
+    ]
+  },
+  "foundryGrid": {
+    "js": [
+      "js/runtime.3467c1.js",
+      "js/foundryGrid.e99490.js"
+    ],
+    "css": [
+      "css/foundryGrid.a57a8d.css"
+    ],
+    "dependencies": [
+      "lodash"
+    ]
+  },
+  "knowledgeHubHeroPostsSlider": {
+    "js": [
+      "js/runtime.3467c1.js",
+      "js/knowledgeHubHeroPostsSlider.e307e6.js"
+    ],
+    "dependencies": [
+      "lodash"
+    ]
+  }
+}

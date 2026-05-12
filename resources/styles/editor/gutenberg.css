@@ -1,0 +1,23 @@
+.editor-styles-wrapper {
+  @apply bg-stone font-sans;
+
+  .edit-post-visual-editor__post-title-wrapper {
+    @apply container-fluid mb-15;
+  }
+
+  .acf-block-component {
+    @apply m-7.5;
+  }
+}
+
+.select2-results__option {
+  @apply text-sm;
+}
+
+body.wp-admin {
+  @apply text-base;
+}
+
+ul#adminmenu {
+  @apply text-sm;
+}

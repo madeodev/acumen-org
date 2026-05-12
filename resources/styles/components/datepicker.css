@@ -1,0 +1,42 @@
+.ui-datepicker {
+  @apply bg-white;
+
+  &-header {
+    @apply inline-flex gap-2 w-full h6 font-normal pt-4 px-4;
+  }
+
+  &-next {
+    @apply order-3;
+  }
+
+  &-prev {
+    @apply order-1;
+  }
+
+  &-title {
+    @apply order-2 grid grid-cols-2 gap-2;
+  }
+
+  &-month,
+  &-year {
+    @apply p-0 border-0 bg-right font-normal;
+  }
+
+  &-calendar {
+    @apply w-full h6 mb-0 text-center pb-4 px-4;
+  }
+
+  &-today {
+    @apply bg-amethyst/10;
+  }
+}
+
+.ui-state {
+  &-default {
+    @apply p-0.5 block;
+  }
+
+  &-active {
+    @apply bg-amethyst/20;
+  }
+}

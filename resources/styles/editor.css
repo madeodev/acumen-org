@@ -1,0 +1,12 @@
+@import '../fonts/gellix/stylesheet';
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import './common/global.css';
+@import './common/typography.css';
+@import './common/wysiwyg.css';
+@import './common/gutenberg.css';
+
+@import './editor/gutenberg.css';

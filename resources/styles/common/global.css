@@ -1,0 +1,32 @@
+@layer base {
+  .container-fluid {
+    @apply mx-auto px-5 lg:px-20 max-w-screen-2xl;
+  }
+  
+  .container-pl {
+    @apply pl-5 lg:pl-20;
+  }
+
+  /* Text container is applied to core blocks and has a smaller max width than .container-fluid */
+  .text-container {
+    @apply mx-5 lg:mx-20 min-[1200px]:mx-auto max-w-[1040px];
+  }
+}
+
+@layer utilities {
+  .mask {
+    clip-path: polygon(0 0, 100% 0, 100% 73%, 90% 100%, 0 100%); /* fallback for browsers that don't support calc() in clip-path */
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 78px), calc(100% - 30px) 100%, 0 100%);
+
+    @apply rounded-card;
+  }
+
+  [x-cloak] {
+    display: none !important;
+  }
+}
+
+img:is([sizes="auto" i],
+[sizes^="auto," i]) {
+  contain-intrinsic-size: auto none !important; /* override inline styles */
+}

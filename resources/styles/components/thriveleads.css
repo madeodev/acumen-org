@@ -1,0 +1,5 @@
+.thrv_wrapper .gform-button {
+  @apply inline-flex items-center justify-center text-center transition-all duration-300 text-md py-1.25 px-3.5 gap-2 rounded-full border cursor-pointer border-black bg-black text-white;
+  @apply disabled:opacity-50 disabled:pointer-events-none;
+  @apply hover:text-black hover:border-white hover:bg-white;
+}

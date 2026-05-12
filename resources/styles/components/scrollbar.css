@@ -1,0 +1,7 @@
+.c-scroll-view .scrollbar-track {
+  @apply opacity-100 bg-transparent;
+}
+
+.c-scroll-view .scrollbar-thumb {
+  @apply bg-gray;
+}

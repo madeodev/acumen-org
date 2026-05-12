@@ -1,0 +1,63 @@
+footer input[type='checkbox'] {
+  @apply opacity-50;
+  @apply before:brightness-0 before:invert;
+}
+
+footer .gform_fields {
+  @apply md:gap-1.25 grid-cols-1 md:grid-cols-6;
+}
+
+footer .gfield {
+  @apply order-3 relative md:col-span-6;
+
+  &--type-html,
+  &--type-consent {
+    @apply md:col-span-5 md:mt-5 md:mr-5;
+  }
+
+  &--type-html,
+  &--type-html p.gform_required_legend,
+  &--type-consent label {
+    @apply text-xs;
+  }
+
+  &--type-html p {
+    @apply mb-3;
+  }
+
+  &--type-consent input {
+    @apply top-0.5;
+  }
+
+  &--type-consent .ginput_container_consent {
+    @apply mt-0;
+  }
+
+  &--type-email,
+  &--type-text {
+    @apply md:col-span-2 border-b border-white mb-0 text-white;
+  }
+
+  &--type-text input,
+  &--type-email input {
+    @apply h4 mb-0;
+    @apply placeholder:text-opacity-50 placeholder:text-white;
+  }
+
+  &--type-submit {
+    @apply md:col-span-1 flex items-center md:justify-end md:mt-5;
+  }
+}
+
+footer .gfield input[type='text'],
+footer .gfield input[type='email'] {
+  @apply p-0 border-0 rounded-none;
+}
+
+footer .validation_message {
+  @apply absolute -bottom-2 translate-y-full text-white;
+}
+
+footer .gform-field-label + .ginput_container {
+  @apply mt-2;
+}

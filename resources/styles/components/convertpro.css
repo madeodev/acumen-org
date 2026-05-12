@@ -1,0 +1,31 @@
+/* Force Gellix font on all ConvertPro popup elements */
+.cp-popup-content {
+    font-family: Gellix, sans-serif !important;
+}
+
+/* Gravity Forms styling inside ConvertPro popups */
+.cp-popup-content .gform_fields,
+.cp-modal-body .gform_fields,
+[class*="cp-"] .gform_fields {
+    @apply gap-3;
+}
+
+.cp-popup-content .gfield input:not([type="checkbox"]),
+.cp-modal-body .gfield input:not([type="checkbox"]),
+[class*="cp-"] .gfield input:not([type="checkbox"]) {
+    @apply px-4 py-2;
+}
+
+/* Consent label styling */
+.cp-popup-content .gfield_consent_label,
+.cp-modal-body .gfield_consent_label,
+[class*="cp-"] .gfield_consent_label {
+    @apply leading-5 text-xs;
+}
+
+/* ConvertPro button font size */
+.cp-popup-content .gform_button,
+.cp-modal-body .gform_button,
+[class*="cp-"] .gform_button {
+    @apply text-base;
+}

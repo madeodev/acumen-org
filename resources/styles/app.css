@@ -1,0 +1,20 @@
+@import '../fonts/big-shoulders-display/stylesheet';
+@import '../fonts/gellix/stylesheet';
+@import '../fonts/copernicus/stylesheet';
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import './common/global.css';
+@import './common/typography.css';
+@import './common/wysiwyg.css';
+@import './common/gutenberg.css';
+
+@import './components/convertpro.css';
+@import './components/gravityforms.css';
+@import './components/datepicker.css';
+@import './components/footer.css';
+@import './components/swiper.css';
+@import './components/scrollbar.css';
+@import './components/thriveleads.css';

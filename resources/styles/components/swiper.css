@@ -1,0 +1,7 @@
+.swiper-pagination-bullet {
+  @apply h-4 w-4 border border-[1px] border-solid border-black bg-transparent opacity-100 hover:bg-black transition rounded-full mx-2.5 focus-visible:!rounded-full;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-black;
+}

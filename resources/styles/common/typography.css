@@ -1,0 +1,122 @@
+@layer base {
+  body,
+  .body {
+    @apply font-sans text-md md:text-lg;
+  }
+
+  .p,
+  p {
+    @apply mb-6 last:mb-0 leading-snug;
+  }
+
+  .hero-headline {
+    @apply text-4xl lg:text-6xl xl:text-7xl font-semibold leading-extra-tight md:leading-none;
+  }
+
+  a,
+  button,
+  textarea,
+  select,
+  input {
+    @apply focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-amethyst focus-visible:outline-2;
+  }
+
+  .bg-amethyst,
+  .bg-black,
+  .bg-cactus,
+  .bg-cinnabar,
+  .bg-lapis,
+  .bg-nutmeg-light,
+  .bg-provence,
+  .bg-racecar,
+  .bg-sapphire,
+  .bg-tulip,
+  .bg-verdigris,
+  .bg-woad {
+    a,
+    button,
+    input {
+      @apply focus-visible:outline-white;
+    }
+  }
+
+  .bg-azalea,
+  .bg-daisy,
+  .bg-ember,
+  .bg-gold,
+  .bg-lime,
+  .bg-mizuna,
+  .bg-orange,
+  .bg-provence.text-black,
+  .bg-spice,
+  .bg-turquoise {
+    a,
+    button,
+    input {
+      @apply focus-visible:outline-black;
+    }
+  }
+
+  input:not([class*='rounded']),
+  a:not([class*='rounded'], .mask),
+  button:not([class*='rounded']) {
+    @apply focus-visible:rounded-1;
+  }
+
+  .h1,
+  h1 {
+    @apply text-3xl lg:text-4xl xl:text-5xl font-semibold leading-extra-tight lg:leading-none;
+  }
+
+  .h2,
+  h2 {
+    @apply text-2xl lg:text-3xl font-bold leading-extra-tight;
+  }
+
+  .h3,
+  h3 {
+    @apply text-1.5xl lg:text-2xl font-normal leading-extra-tight;
+  }
+
+  .h4,
+  h4 {
+    @apply text-xl font-bold mb-4;
+  }
+
+  .h5,
+  h5 {
+    @apply text-base font-semibold mb-4;
+  }
+
+  .h6,
+  h6 {
+    @apply text-base font-normal leading-tight mb-4;
+  }
+
+  label {
+    @apply text-base font-normal;
+  }
+
+  input {
+    @apply text-base font-semibold;
+  }
+
+  .stat {
+    @apply font-display font-bold text-6xl md:text-8xl leading-extra-tight tracking-tight;
+  }
+
+  .caption,
+  .wp-caption,
+  figcaption {
+    @apply h6;
+  }
+
+  a:not(.link-no-underline, .static-underline),
+  .animate-underline {
+    @apply bg-link-underline bg-link-init transition-all bg-no-repeat pb-0.5 bg-bottom duration-500 hover:bg-link-hover;
+  }
+
+  .static-underline {
+    @apply bg-link-init bg-link-hover bg-link-underline bg-no-repeat bg-left-bottom pb-0.5;
+  }
+}
