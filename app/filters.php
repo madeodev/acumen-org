@@ -23,7 +23,7 @@ add_action('wp_footer', function () {
     ?>
     <script>
     window.funraise = window.funraise || [];
-
+    console.log('funraise', window.funraise);
     window.funraise.push('onSuccess', function(donor, donation) {
         window._frProcessedTransactions = window._frProcessedTransactions || [];
 
