@@ -30,6 +30,7 @@
     "@roots/sage": "^6.17.0",
     "alpinejs": "^3.13.2",
     "eslint-plugin-vue": "^9.17.0",
+    "patch-package": "^8.0.1",
     "vue": "^3.3.4",
     "vue-inline-svg": "^3.1.2"
   },

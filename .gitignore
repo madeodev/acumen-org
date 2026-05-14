@@ -1,0 +1,4 @@
+# OpenMemory - IDE/Assistant specific rules
+.cursor\rules\openmemory.mdc
+AGENTS.md
+node_modules
