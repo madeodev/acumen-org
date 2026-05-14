@@ -21,7 +21,7 @@ add_filter('excerpt_more', function () {
  */
 add_action('wp_footer', function () {
     ?>
-    <script>
+    <!--script>
     window.funraise = window.funraise || [];
     console.log('funraise', window.funraise);
     window.funraise.push('onSuccess', function(donor, donation) {
@@ -59,7 +59,7 @@ add_action('wp_footer', function () {
             }]
         });
     });
-    </script>
+    </script -->
     <?php
 });
 
