@@ -9,6 +9,7 @@
   },
   "type": "module",
   "scripts": {
+    "postinstall": "patch-package",
     "dev": "bud dev",
     "build": "bud build",
     "translate": "yarn translate:pot && yarn translate:update",

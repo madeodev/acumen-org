@@ -1,0 +1,75 @@
+diff --git a/node_modules/@roots/bud-framework/lib/bootstrap/files/index.js b/node_modules/@roots/bud-framework/lib/bootstrap/files/index.js
+index 615b23b..a52ccab 100644
+--- a/node_modules/@roots/bud-framework/lib/bootstrap/files/index.js
++++ b/node_modules/@roots/bud-framework/lib/bootstrap/files/index.js
+@@ -1,5 +1,6 @@
+ import { builtinModules } from 'node:module';
+ import { join, parse } from 'node:path';
++import { pathToFileURL } from 'node:url';
+ import { normalize } from 'path/posix';
+ import { get as getPaths } from '@roots/bud-framework/bootstrap/paths';
+ import { BudError } from '@roots/bud-support/errors';
+@@ -116,7 +117,7 @@ async function getFileInfo(filename) {
+                 /**
+                  * bust the cache with the {@link current} sha1
+                  */
+-                const path = `${file.path}?v=${current.sha1}`;
++                const path = `${pathToFileURL(file.path).href}?v=${current.sha1}`;
+                 const value = await import(path).catch(origin => {
+                     throw origin;
+                 });
+@@ -145,7 +146,7 @@ async function getFileInfo(filename) {
+                 .copy(outfile, tmpfile, { overwrite: true })
+                 .catch(makeCopyError(tmpfile));
+             logger.scope(`fs`).info(`importing tmpfile:`, tmpfile);
+-            const value = await import(tmpfile).catch(makeTmpFileImportError(tmpfile));
++            const value = await import(pathToFileURL(tmpfile).href).catch(makeTmpFileImportError(tmpfile));
+             logger.scope(`fs`).info(`removing tmpfile:`, tmpfile);
+             await fs.remove(tmpfile).catch(makeRemoveError(tmpfile));
+             return value?.default ?? value;
+diff --git a/node_modules/@roots/bud-framework/lib/methods/path/index.js b/node_modules/@roots/bud-framework/lib/methods/path/index.js
+index 61f57c4..d42c3cd 100644
+--- a/node_modules/@roots/bud-framework/lib/methods/path/index.js
++++ b/node_modules/@roots/bud-framework/lib/methods/path/index.js
+@@ -6,7 +6,7 @@ export const path = function (...values) {
+     if (isAbsolute(join(...values))) {
+         return join(...values);
+     }
+-    values = values.flatMap(value => value.split(sep));
++    values = values.flatMap(value => value.split(/[\\/]/));
+     const hash = this.hooks.filter(`value.hashFormat`, `[contenthash:6]`);
+     const name = this.hooks.filter(`value.fileFormat`, `[name]`);
+     const transformMagicString = makeParseMagicString(this.context.hash ? `${name}.${hash}` : name, hash);
+diff --git a/node_modules/@roots/bud-framework/lib/module/index.js b/node_modules/@roots/bud-framework/lib/module/index.js
+index 5525174..4a99311 100644
+--- a/node_modules/@roots/bud-framework/lib/module/index.js
++++ b/node_modules/@roots/bud-framework/lib/module/index.js
+@@ -127,7 +127,9 @@ export class Module extends Service {
+         if (!this.hasResolution(signifier)) {
+             await this.resolve(signifier, context).catch(this.catch);
+         }
+-        const code = await import(this.getResolution(signifier)).catch(async (error) => {
++        const _res = this.getResolution(signifier);
++        const _resUrl = (_res && !_res.startsWith(`file:`)) ? pathToFileURL(_res).href : _res;
++        const code = await import(_resUrl).catch(async (error) => {
+             if (options.reject)
+                 return await this.handleError(error.message ?? error);
+         });
+@@ -143,6 +145,8 @@ export class Module extends Service {
+     makeContextURL(context) {
+         if (context instanceof URL)
+             return context;
++        if (typeof context === `string` && context.startsWith(`file:`))
++            return new URL(context);
+         if (context)
+             return pathToFileURL(context);
+         return pathToFileURL(join(this.app.context.basedir, `package.json`));
+@@ -187,6 +191,8 @@ export class Module extends Service {
+             const resolvedPath = resolve(path, context);
+             if (!resolvedPath)
+                 return false;
++            if (typeof resolvedPath === `string` && !resolvedPath.startsWith(`file:`))
++                return resolvedPath;
+             return normalize(fileURLToPath(resolvedPath));
+         };
+         const resolved = attemptResolution(signifier, this.makeContextURL()) ??

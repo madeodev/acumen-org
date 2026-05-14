@@ -1,0 +1,13 @@
+diff --git a/node_modules/@roots/bud-tailwindcss/lib/extension/index.js b/node_modules/@roots/bud-tailwindcss/lib/extension/index.js
+index 96d6fde..fb8bf24 100644
+--- a/node_modules/@roots/bud-tailwindcss/lib/extension/index.js
++++ b/node_modules/@roots/bud-tailwindcss/lib/extension/index.js
+@@ -15,7 +15,7 @@ let BudTailwindCss = class BudTailwindCss extends BudTailwindOptionsApi {
+         if (!bud.postcss) {
+             return this.catch(`@roots/bud-postcss is required to run @roots/bud-tailwindcss`);
+         }
+-        const nesting = await this.resolve(join(`tailwindcss`, `nesting`, `index.js`), import.meta.url);
++        const nesting = await this.resolve(`tailwindcss/nesting/index.js`, import.meta.url);
+         if (!nesting) {
+             this.catch(`tailwindcss/nesting not found in node_modules`);
+         }
