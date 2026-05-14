@@ -1,5 +1,7 @@
 # OpenMemory - IDE/Assistant specific rules
-.cursor/rules/openmemory.mdc
+.cursor\rules\openmemory.mdc
+AGENTS.md
+node_modules
 
 # Acorn / Laravel — compiled Blade, discovery cache, file cache, logs
 storage/framework/views/*
