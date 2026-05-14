@@ -1,0 +1,10 @@
+# OpenMemory - IDE/Assistant specific rules
+.cursor/rules/openmemory.mdc
+
+# Acorn / Laravel — compiled Blade, discovery cache, file cache, logs
+storage/framework/views/*
+!storage/framework/views/.gitignore
+storage/framework/cache/*
+!storage/framework/cache/.gitignore
+storage/logs/*
+!storage/logs/.gitignore
