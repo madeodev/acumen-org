@@ -2,3 +2,11 @@
 .cursor\rules\openmemory.mdc
 AGENTS.md
 node_modules
+
+# Acorn / Laravel — compiled Blade, discovery cache, file cache, logs
+storage/framework/views/*
+!storage/framework/views/.gitignore
+storage/framework/cache/*
+!storage/framework/cache/.gitignore
+storage/logs/*
+!storage/logs/.gitignore
