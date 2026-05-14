@@ -1,2 +1,6 @@
 # Acorn: compiled Blade views (regenerated per environment)
 storage/framework/views/*.php
+
+# OpenMemory - IDE/Assistant specific rules
+.cursor\rules\openmemory.mdc
+AGENTS.md
