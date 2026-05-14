@@ -10,3 +10,4 @@ storage/framework/cache/*
 !storage/framework/cache/.gitignore
 storage/logs/*
 !storage/logs/.gitignore
+.cursor/rules/openmemory.mdc
