@@ -4,3 +4,5 @@ storage/framework/views/*.php
 # OpenMemory - IDE/Assistant specific rules
 .cursor\rules\openmemory.mdc
 AGENTS.md
+node_modules/
+node_modules/*
