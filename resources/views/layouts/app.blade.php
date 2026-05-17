@@ -63,6 +63,13 @@
 
         console.log('dataLayer funraiseDonation', { transaction_id: transactionIdForTag, value: numericValue, dedupeKey: dedupeKey });
     }
+    // Register before create — repeat per form (e.g. 49641, 49591)
+    [49641, 49591].forEach(function (formId) {
+        window.funraise.push('onSuccess', { form: formId }, function (donor, donation) {
+            console.log('Funraise onSuccess', formId, donation);
+            pushFunraiseDonationToDataLayer(donor, donation);
+        });
+    });
   </script>
 </head>
 
