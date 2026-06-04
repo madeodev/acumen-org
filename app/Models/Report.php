@@ -24,6 +24,8 @@ class Report extends Post
             ...$parent,
             'type' => Term::getSingleByPostID($this->id, 'report-type'),
             'title_button' => $report,
+            'link' => get_field('external_url', $this->id) ?: $parent['link'],
+            'target' => get_field('external_url', $this->id) ? '_blank' : '_self',
             'media_format' => Term::getSingleByPostID($this->id, 'media-format'),
             'year' => $year,
             'featured_image_position' => get_field('featured_image_location', $this->id) ?? 'side',
