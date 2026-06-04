@@ -33,6 +33,10 @@ class ReportInfo extends Field
                 'label' => __('Report Button Label', 'sage'),
                 'instructions' => __('Optional. If not set, the filename of the report file will be used.', 'sage'),
             ])
+            ->addUrl('external_url', [
+                'label' => __('External URL', 'sage'),
+                'instructions' => __('If an external url is added, this report will open that link instead of the report page.'),
+            ])
             ->addFields($this->get(MediaFormat::class))
             ->addTaxonomy('type', [
                 'label' => __('Report Type', 'sage'),

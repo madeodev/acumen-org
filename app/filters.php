@@ -21,7 +21,7 @@ add_filter('excerpt_more', function () {
 add_action('wp', function() {
     if(
         is_singular() &&
-        in_array(get_post_type(), ['news', 'program']) 
+        in_array(get_post_type(), ['news', 'program', 'report']) 
     ) {
         $external_url = get_field('external_url', get_the_ID());
         if(empty($external_url)) return;
