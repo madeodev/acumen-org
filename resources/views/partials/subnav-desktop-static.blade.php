@@ -54,13 +54,14 @@
       </div>
 
       {{-- Col 4: Navigation links with left border --}}
-      {{-- subnav button color already has group-hover:translate-x-2.5 on the icon --}}
+      {{-- subnav color: rounded + group-hover:translate-x-2.5 on icon already built in --}}
       <ul class="pl-5 border-l border-white">
         <li>
           <x-button
             :link="['title' => 'Reports', 'url' => '#']"
             color="subnav"
             icon="arrow-right"
+            class="w-full hover:bg-white/30 transition-colors duration-300"
           />
         </li>
         <li>
@@ -68,6 +69,7 @@
             :link="['title' => 'Blogs', 'url' => '#']"
             color="subnav"
             icon="arrow-right"
+            class="w-full hover:bg-white/30 transition-colors duration-300"
           />
         </li>
         <li>
@@ -75,6 +77,7 @@
             :link="['title' => 'Case Studies', 'url' => '#']"
             color="subnav"
             icon="arrow-right"
+            class="w-full hover:bg-white/30 transition-colors duration-300"
           />
         </li>
         <li>
@@ -82,6 +85,7 @@
             :link="['title' => 'News', 'url' => '#']"
             color="subnav"
             icon="arrow-right"
+            class="w-full hover:bg-white/30 transition-colors duration-300"
           />
         </li>
       </ul>
