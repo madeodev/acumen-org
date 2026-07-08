@@ -35,17 +35,17 @@
     >
       <ul class="flex items-baseline gap-10">
 
-        {{-- Static Resources Nav Item --}}
+        {{-- Static Knowledge Hub Nav Item --}}
         <li>
           <x-button
-            x-ref="button-resources"
+            x-ref="button-knowledge-hub"
             element="button"
-            :link="['title' => 'Resources']"
+            :link="['title' => 'Knowledge Hub']"
             class="menu-item-parent"
             color="main-nav"
-            @mouseover="openMenu('resources')"
-            x-bind:aria-expanded="isOpen('resources')"
-            x-bind:class="isOpen('resources') ?
+            @mouseover="openMenu('knowledge-hub')"
+            x-bind:aria-expanded="isOpen('knowledge-hub')"
+            x-bind:class="isOpen('knowledge-hub') ?
                 'font-bold text-amethyst border-amethyst border-b-4' :
                 'border-transparent mb-0.5'"
           />
