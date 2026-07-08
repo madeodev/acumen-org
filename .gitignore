@@ -7,3 +7,6 @@ AGENTS.md
 node_modules/
 node_modules/*
 .cursor/rules/openmemory.mdc
+
+package-lock.json
+package.json

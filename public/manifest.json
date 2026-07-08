@@ -1,7 +1,7 @@
 {
-  "app.css": "css/app.9bc0e9.css",
+  "app.css": "css/app.e73d61.css",
   "app.js": "js/app.515d02.js",
-  "editor.css": "css/editor.a6dbc7.css",
+  "editor.css": "css/editor.9d3c3a.css",
   "editor.js": "js/editor.ae2144.js",
   "peopleGrid.css": "css/peopleGrid.4daa7d.css",
   "peopleGrid.js": "js/peopleGrid.80ff78.js",
@@ -50,6 +50,7 @@
   "fonts/gellix/Gellix-Regular.woff2": "fonts/gellix/Gellix-Regular.34542c.woff2",
   "fonts/copernicus/Copernicus-Book.woff2": "fonts/copernicus/Copernicus-Book.e86b56.woff2",
   "fonts/copernicus/Copernicus-Medium.woff2": "fonts/copernicus/Copernicus-Medium.164106.woff2",
+  "images/knowledge-hub-featured.jpg": "images/knowledge-hub-featured.d52392.jpg",
   "json/country-data.json": "json/country-data.23a226.json",
   "fonts/big-shoulders-display/BigShouldersDisplay-Bold.woff2": "fonts/big-shoulders-display/BigShouldersDisplay-Bold.625ceb.woff2",
   "images/previews/share-buttons.jpg": "images/previews/share-buttons.3a5deb.jpg",
