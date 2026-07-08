@@ -34,6 +34,27 @@
       {{-- @mouselave="handleEscape" --}}
     >
       <ul class="flex items-baseline gap-10">
+
+        {{-- Static Resources Nav Item --}}
+        <li>
+          <x-button
+            x-ref="button-resources"
+            element="button"
+            :link="['title' => 'Resources']"
+            class="menu-item-parent"
+            color="main-nav"
+            @mouseover="openMenu('resources')"
+            x-bind:aria-expanded="isOpen('resources')"
+            x-bind:class="isOpen('resources') ?
+                'font-bold text-amethyst border-amethyst border-b-4' :
+                'border-transparent mb-0.5'"
+          />
+
+          <template x-teleport="#nav-desktop-container">
+            @include('partials.subnav-desktop-static')
+          </template>
+        </li>
+
         @foreach ($main_nav as $item)
           {{-- Normal links --}}
           @if ($item['children']->isEmpty() && !$loop->last)
