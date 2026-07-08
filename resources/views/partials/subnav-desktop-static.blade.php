@@ -15,7 +15,7 @@
       {{-- Cols 1–2: Large featured article card --}}
       <div class="col-span-2 flex">
         {{-- Image: fluid, fills height of text side via flex-stretch --}}
-        <div class="relative w-2/5 shrink-0 rounded-tl-10 overflow-hidden">
+        <div class="relative w-1/2 shrink-0 rounded-tl-10 overflow-hidden">
           <img
             src="{{ \Roots\asset('images/knowledge-hub-featured.jpg')->uri() }}"
             alt="Acumen appoints Carsten Stendevad as President and Chief Investment Officer"
@@ -23,7 +23,7 @@
           />
         </div>
         {{-- Text area --}}
-        <div class="flex-1 flex flex-col gap-5 bg-plum rounded-tr-10 rounded-br-10 p-7.5">
+        <div class="w-1/2 flex flex-col gap-5 bg-plum rounded-tr-10 rounded-br-10 p-7.5">
           <p class="text-base font-semibold leading-extra-tight">Acumen appoints Carsten Stendevad as President and Chief Investment Officer</p>
           <p class="text-base">Former ATP CEO and Bridgewater co-Chief Investment Officer for Sustainable Investing to lead Acumen's $500M impact investments.</p>
           <x-button
