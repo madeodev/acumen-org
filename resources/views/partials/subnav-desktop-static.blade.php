@@ -13,7 +13,7 @@
     <div class="grid grid-cols-4 gap-7.5">
 
       {{-- Cols 1–2: Large featured article card --}}
-      <div class="col-span-2 flex">
+      <a href="#" class="col-span-2 flex group link-no-underline">
         {{-- Image: fluid, fills height of text side via flex-stretch --}}
         <div class="relative w-1/2 shrink-0 rounded-tl-10 overflow-hidden">
           <img
@@ -23,41 +23,38 @@
           />
         </div>
         {{-- Text area --}}
-        <div class="w-1/2 flex flex-col gap-5 bg-plum rounded-tr-10 rounded-br-10 p-7.5">
-          <p class="text-base font-semibold leading-extra-tight">Acumen appoints Carsten Stendevad as President and Chief Investment Officer</p>
-          <p class="text-base">Former ATP CEO and Bridgewater co-Chief Investment Officer for Sustainable Investing to lead Acumen's $500M impact investments.</p>
-          <x-button
-            :link="['title' => 'Read more', 'url' => '#']"
-            type="icon"
-            icon="arrow-right"
-            color="icon-white"
-          />
+        <div class="relative w-1/2 bg-plum rounded-tr-10 rounded-br-10 overflow-hidden">
+          {{-- White overlay: fades in on group-hover, stacks over bg-plum --}}
+          <div class="absolute inset-0 bg-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
+          {{-- Content sits above the overlay --}}
+          <div class="relative z-5 flex flex-col gap-5 p-7.5">
+            <p class="text-base font-semibold leading-extra-tight">Acumen appoints Carsten Stendevad as President and Chief Investment Officer</p>
+            <p class="text-base">Former ATP CEO and Bridgewater co-Chief Investment Officer for Sustainable Investing to lead Acumen's $500M impact investments.</p>
+            @svg('images.arrow-right', 'w-3.5 h-auto transition-transform duration-300 group-hover:translate-x-2.5')
+          </div>
         </div>
-      </div>
+      </a>
 
       {{-- Col 3: Two stacked article teasers --}}
       <div class="flex flex-col gap-5">
-        <div class="flex flex-col gap-5 bg-plum rounded-tl-10 rounded-tr-10 rounded-br-10 p-7.5 flex-1">
-          <p class="text-base font-semibold leading-extra-tight">Scaling decent work in Africa starts by supporting informal jobs</p>
-          <x-button
-            :link="['title' => 'Read more', 'url' => '#']"
-            type="icon"
-            icon="arrow-right"
-            color="icon-white"
-          />
-        </div>
-        <div class="flex flex-col gap-5 bg-plum rounded-tl-10 rounded-tr-10 rounded-br-10 p-7.5 flex-1">
-          <p class="text-base font-semibold leading-extra-tight">When hardware meets heart: Reimagining farmland for a dual-purpose future</p>
-          <x-button
-            :link="['title' => 'Read more', 'url' => '#']"
-            type="icon"
-            icon="arrow-right"
-            color="icon-white"
-          />
-        </div>
+        <a href="#" class="flex flex-col bg-plum rounded-tl-10 rounded-tr-10 rounded-br-10 relative overflow-hidden flex-1 group link-no-underline">
+          <div class="absolute inset-0 bg-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
+          <div class="relative z-5 flex flex-col gap-5 p-7.5">
+            <p class="text-base font-semibold leading-extra-tight">Scaling decent work in Africa starts by supporting informal jobs</p>
+            @svg('images.arrow-right', 'w-3.5 h-auto transition-transform duration-300 group-hover:translate-x-2.5')
+          </div>
+        </a>
+        <a href="#" class="flex flex-col bg-plum rounded-tl-10 rounded-tr-10 rounded-br-10 relative overflow-hidden flex-1 group link-no-underline">
+          <div class="absolute inset-0 bg-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
+          <div class="relative z-5 flex flex-col gap-5 p-7.5">
+            <p class="text-base font-semibold leading-extra-tight">When hardware meets heart: Reimagining farmland for a dual-purpose future</p>
+            @svg('images.arrow-right', 'w-3.5 h-auto transition-transform duration-300 group-hover:translate-x-2.5')
+          </div>
+        </a>
       </div>
 
       {{-- Col 4: Navigation links with left border --}}
+      {{-- subnav button color already has group-hover:translate-x-2.5 on the icon --}}
       <ul class="pl-5 border-l border-white">
         <li>
           <x-button
