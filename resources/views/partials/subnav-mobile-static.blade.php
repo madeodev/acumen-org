@@ -11,7 +11,7 @@
     {{-- Featured article card: image + text side by side --}}
     <a href="#" class="flex group link-no-underline">
       {{-- Image: fluid, fills height of the text side --}}
-      <div class="relative w-1/4 shrink-0 rounded-tl-10 overflow-hidden min-h-[142px]">
+      <div class="relative w-[110px] shrink-0 rounded-tl-10 overflow-hidden min-h-[142px]">
         <img
           src="{{ \Roots\asset('images/knowledge-hub-featured.jpg')->uri() }}"
           alt="Acumen appoints Carsten Stendevad as President and Chief Investment Officer"
