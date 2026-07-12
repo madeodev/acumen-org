@@ -13,6 +13,7 @@
     "build": "bud build",
     "WSL:dev": "cd /mnt/c/My Files/Work/Madeo/Github/acumen-org && node node_modules/@roots/bud/bin/bud.mjs dev",
     "WSL:build": "cd /mnt/c/My Files/Work/Madeo/Github/acumen-org && node node_modules/@roots/bud/bin/bud.mjs build",
+    "WSL:build:fresh": "cd /mnt/c/My Files/Work/Madeo/Github/acumen-org && node node_modules/@roots/bud/bin/bud.mjs clean @cache && node node_modules/@roots/bud/bin/bud.mjs build",
     "WSL:install": "cd /mnt/c/My Files/Work/Madeo/Github/acumen-org && npm install --no-bin-links",
     "translate": "yarn translate:pot && yarn translate:update",
     "translate:pot": "wp i18n make-pot . ./resources/lang/sage.pot --include=\"app,resources\"",
