@@ -15,7 +15,7 @@
       {{-- Cols 1–2: Large featured article card --}}
       <a href="#" class="col-span-2 flex group link-no-underline">
         {{-- Image: fluid, fills height of text side via flex-stretch --}}
-        <div class="relative w-1/2 shrink-0 rounded-tl-10 overflow-hidden">
+        <div class="relative w-1/2 shrink-0 rounded-tl-10 overflow-hidden aspect-[305/328]">
           <img
             src="{{ \Roots\asset('images/knowledge-hub-featured.jpg')->uri() }}"
             alt="Acumen appoints Carsten Stendevad as President and Chief Investment Officer"
@@ -61,7 +61,7 @@
             :link="['title' => 'Reports', 'url' => '#']"
             color="subnav"
             icon="arrow-right"
-            class="w-full hover:bg-white/30 transition-colors duration-300"
+            class="w-full hover:bg-white/30 transition-colors duration-0"
           />
         </li>
         <li>
@@ -69,7 +69,7 @@
             :link="['title' => 'Blogs', 'url' => '#']"
             color="subnav"
             icon="arrow-right"
-            class="w-full hover:bg-white/30 transition-colors duration-300"
+            class="w-full hover:bg-white/30 transition-colors duration-0"
           />
         </li>
         <li>
@@ -77,7 +77,7 @@
             :link="['title' => 'Case Studies', 'url' => '#']"
             color="subnav"
             icon="arrow-right"
-            class="w-full hover:bg-white/30 transition-colors duration-300"
+            class="w-full hover:bg-white/30 transition-colors duration-0"
           />
         </li>
         <li>
@@ -85,7 +85,7 @@
             :link="['title' => 'News', 'url' => '#']"
             color="subnav"
             icon="arrow-right"
-            class="w-full hover:bg-white/30 transition-colors duration-300"
+            class="w-full hover:bg-white/30 transition-colors duration-0"
           />
         </li>
       </ul>
