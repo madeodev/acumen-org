@@ -1,21 +1,15 @@
 {
   "app": {
     "js": [
-      "js/runtime.5414b3.js",
-      "js/app.515d02.js"
-    ],
-    "css": [
-      "css/app.6644a2.css"
+      "js/runtime.js",
+      "js/app.js"
     ],
     "dependencies": []
   },
   "editor": {
     "js": [
-      "js/runtime.5414b3.js",
-      "js/editor.ae2144.js"
-    ],
-    "css": [
-      "css/editor.514cce.css"
+      "js/runtime.js",
+      "js/editor.js"
     ],
     "dependencies": [
       "wp-data",
@@ -24,11 +18,8 @@
   },
   "peopleGrid": {
     "js": [
-      "js/runtime.5414b3.js",
-      "js/peopleGrid.80ff78.js"
-    ],
-    "css": [
-      "css/peopleGrid.4daa7d.css"
+      "js/runtime.js",
+      "js/peopleGrid.js"
     ],
     "dependencies": [
       "lodash"
@@ -36,11 +27,8 @@
   },
   "companyGrid": {
     "js": [
-      "js/runtime.5414b3.js",
-      "js/companyGrid.09d8c6.js"
-    ],
-    "css": [
-      "css/companyGrid.a57a8d.css"
+      "js/runtime.js",
+      "js/companyGrid.js"
     ],
     "dependencies": [
       "lodash"
@@ -48,11 +36,8 @@
   },
   "postGridFilter": {
     "js": [
-      "js/runtime.5414b3.js",
-      "js/postGridFilter.de163a.js"
-    ],
-    "css": [
-      "css/postGridFilter.a57a8d.css"
+      "js/runtime.js",
+      "js/postGridFilter.js"
     ],
     "dependencies": [
       "lodash"
@@ -60,11 +45,8 @@
   },
   "interactiveMap": {
     "js": [
-      "js/runtime.5414b3.js",
-      "js/interactiveMap.06e407.js"
-    ],
-    "css": [
-      "css/interactiveMap.75cff9.css"
+      "js/runtime.js",
+      "js/interactiveMap.js"
     ],
     "dependencies": [
       "lodash"
@@ -72,11 +54,8 @@
   },
   "foundryGrid": {
     "js": [
-      "js/runtime.5414b3.js",
-      "js/foundryGrid.207cc2.js"
-    ],
-    "css": [
-      "css/foundryGrid.a57a8d.css"
+      "js/runtime.js",
+      "js/foundryGrid.js"
     ],
     "dependencies": [
       "lodash"
@@ -84,8 +63,8 @@
   },
   "knowledgeHubHeroPostsSlider": {
     "js": [
-      "js/runtime.5414b3.js",
-      "js/knowledgeHubHeroPostsSlider.6c1c4c.js"
+      "js/runtime.js",
+      "js/knowledgeHubHeroPostsSlider.js"
     ],
     "dependencies": [
       "lodash"
