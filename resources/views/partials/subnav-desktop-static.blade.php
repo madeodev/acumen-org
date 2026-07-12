@@ -8,7 +8,7 @@
 >
   <div class="container-fluid flex flex-col gap-7.5 py-15">
 
-    <p class="text-xl font-bold">Featured</p>
+    <p class="text-xl font-bold mb-0">Featured</p>
 
     <div class="grid grid-cols-4 gap-7.5">
 

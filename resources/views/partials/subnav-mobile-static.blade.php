@@ -1,6 +1,6 @@
 <div
   class="pb-7.5 bg-amethyst text-white transition-all"
-  :class="isButton ? '-mt-24 pt-24' : 'pt-2'"
+  :class="isButton ? '-mt-24 pt-24' : 'pt-[16px]'"
   x-collapse
   x-show="isOpen('knowledge-hub')"
   @focusout="handleFocusOut('button-knowledge-hub')"
@@ -9,7 +9,7 @@
   <div class="container-fluid flex flex-col gap-5">
 
     {{-- Featured article card: image + text side by side --}}
-    <div class="flex">
+    <a href="#" class="flex group link-no-underline">
       {{-- Image: fluid, fills height of the text side --}}
       <div class="relative w-1/4 shrink-0 rounded-tl-10 overflow-hidden min-h-[142px]">
         <img
@@ -19,16 +19,14 @@
         />
       </div>
       {{-- Text area --}}
-      <div class="flex-1 flex flex-col gap-5 bg-plum rounded-tr-10 rounded-br-10 p-5">
-        <p class="text-base font-semibold leading-extra-tight">Acumen appoints Carsten Stendevad as President and Chief Investment Officer</p>
-        <x-button
-          :link="['title' => 'Read more', 'url' => '#']"
-          type="icon"
-          icon="arrow-right"
-          color="icon-white"
-        />
+      <div class="relative flex-1 bg-plum rounded-tr-10 rounded-br-10 overflow-hidden">
+        <div class="absolute inset-0 bg-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
+        <div class="relative z-5 flex flex-col gap-2.5 p-5">
+          <p class="text-base font-semibold leading-extra-tight">Acumen appoints Carsten Stendevad as President and Chief Investment Officer</p>
+          @svg('images.arrow-right', 'w-3.5 h-auto transition-transform duration-300 group-hover:translate-x-2.5')
+        </div>
       </div>
-    </div>
+    </a>
 
     {{-- Navigation links --}}
     <ul>
