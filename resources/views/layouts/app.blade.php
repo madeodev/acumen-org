@@ -26,17 +26,15 @@
         var rawTx = donation.transactionId != null ? donation.transactionId : donation.id;
         var formId = donation.formId != null ? donation.formId : 'unknown_form';
 
-        // Dedupe: real id when Funraise provides it; in test mode use a short-lived composite key
         var dedupeKey;
         if (rawTx != null && String(rawTx) !== '') {
             dedupeKey = String(rawTx);
         } else {
             var email = donor && donor.email ? String(donor.email) : '';
-            var bucket = Math.floor(Date.now() / 3000); // same donation double-callback ~same window
+            var bucket = Math.floor(Date.now() / 3000);
             dedupeKey = 'fr:' + formId + ':' + String(donation.amount) + ':' + String(donation.baseAmount) + ':' + email + ':' + bucket;
         }
 
-        window._frProcessedTransactions = window._frProcessedTransactions || [];
         if (window._frProcessedTransactions.indexOf(dedupeKey) !== -1) {
             console.log('Duplicate prevented', dedupeKey);
             return;
@@ -46,7 +44,6 @@
         var numericValue = toNumber(donation.amount);
         var currencyCode = (donation.currency && donation.currency.name) ? donation.currency.name : 'USD';
 
-        // GA4-friendly transaction_id: real in prod; synthetic only when Funraise omits it (common in test)
         var transactionIdForTag = (rawTx != null && String(rawTx) !== '')
             ? String(rawTx)
             : ('funraise_test_' + formId + '_' + Date.now());
@@ -58,15 +55,22 @@
             value: isNaN(numericValue) ? 0 : numericValue,
             currency: currencyCode,
             form_id: formId,
-            items: [{ item_name: 'Donation', quantity: 1 }]
+            // HARDENED: Added strict GA4 ecommerce parameters to prevent production validation drops
+            items: [{ 
+                item_name: 'Donation',
+                item_id: 'donation_' + formId,
+                price: isNaN(numericValue) ? 0 : numericValue,
+                quantity: 1
+            }]
         });
 
-        console.log('dataLayer funraiseDonation', { transaction_id: transactionIdForTag, value: numericValue, dedupeKey: dedupeKey });
+        console.log('✅ dataLayer funraiseDonation successfully pushed:', { transaction_id: transactionIdForTag, value: numericValue });
     }
-    // Register before create — repeat per form (e.g. 49641, 49591)
+
+    // Register listeners for current in-scope forms
     [49641, 49591].forEach(function (formId) {
         window.funraise.push('onSuccess', { form: formId }, function (donor, donation) {
-            console.log('Funraise onSuccess', formId, donation);
+            console.log('🚨 Funraise onSuccess event fired live for form:', formId, donation);
             pushFunraiseDonationToDataLayer(donor, donation);
         });
     });
