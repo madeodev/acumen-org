@@ -1,6 +1,6 @@
 <div
   class="pb-7.5 bg-amethyst text-white transition-all"
-  :class="isButton ? '-mt-24 pt-24' : 'pt-4'"
+  :class="isButton ? '-mt-24 pt-24' : 'pt-[20px]'"
   x-collapse
   x-show="isOpen('knowledge-hub')"
   @focusout="handleFocusOut('button-knowledge-hub')"

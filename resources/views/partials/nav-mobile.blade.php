@@ -38,6 +38,30 @@
     @if (!empty($main_nav))
       <nav aria-label="{{ wp_get_nav_menu_name('main_navigation') }}">
         <ul>
+
+
+          {{-- Static Knowledge Hub item --}}
+          <li
+            x-data="{ isButton: false }"
+            class="w-full transition-colors my-2.5"
+            :class="isOpen('knowledge-hub') && 'bg-amethyst'"
+          >
+            <div class="container-fluid">
+              <x-button
+                x-ref="button-knowledge-hub"
+                element="button"
+                :link="['title' => 'Knowledge Hub']"
+                color="main-nav-mobile-btn"
+                @click="toggleMenu('knowledge-hub')"
+                x-bind:aria-expanded="isOpen('knowledge-hub')"
+                x-bind:class="isOpen('knowledge-hub') ?
+                    'h4 leading-extra-tight text-white pt-7.5 mb-0 pb-0 focus-visible:!outline-none' :
+                    'text-md'"
+              />
+            </div>
+            @include('partials.subnav-mobile-static')
+          </li>
+
           @foreach ($main_nav as $item)
             {{-- Normal links --}}
             @if ($item['children']->isEmpty() && !$loop->last)
