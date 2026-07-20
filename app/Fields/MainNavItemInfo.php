@@ -26,6 +26,18 @@ class MainNavItemInfo extends Field
             ->addImage('image', [
                 'label' => __('Image', 'sage'),
                 'instructions' => __('For submenu items only')
+            ])
+            ->addRelationship('featured_posts', [
+                'label' => __('Featured Knowledge Hub Posts', 'sage'),
+                'instructions' => __(
+                    'Optional. Select exactly 3 posts (News, Blog, Report, Case Study). First = large card (image + description). Next two = title only. Used in this item\'s submenu. Leave empty for the classic submenu layout.',
+                    'sage'
+                ),
+                'post_type' => ['news', 'post', 'report', 'case-study'],
+                'filters' => ['search', 'post_type'],
+                'min' => 0,
+                'max' => 3,
+                'return_format' => 'object',
             ]);
 
         return $mainNavItemInfo->build();
