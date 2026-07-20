@@ -54,7 +54,7 @@
                 @click="toggleMenu('knowledge-hub')"
                 x-bind:aria-expanded="isOpen('knowledge-hub')"
                 x-bind:class="isOpen('knowledge-hub') ?
-                    'h4 text-white pt-7.5 mb-0 focus-visible:!outline-none' :
+                    'h4 leading-extra-tight text-white pt-7.5 mb-0 pb-0 focus-visible:!outline-none' :
                     'text-md'"
               />
             </div>

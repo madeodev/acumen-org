@@ -8,7 +8,7 @@
 >
   <div class="container-fluid flex flex-col gap-7.5 py-15">
 
-    <p class="text-xl font-bold mb-0">Featured</p>
+    <p class="text-xl leading-extra-tight font-bold mb-0">Featured</p>
 
     <div class="grid grid-cols-4 gap-[20px]">
 
@@ -29,7 +29,7 @@
           {{-- Content sits above the overlay --}}
           <div class="relative z-5 flex flex-col gap-5 p-7.5">
             <p class="text-base font-semibold leading-extra-tight mb-0">Acumen appoints Carsten Stendevad as President and Chief Investment Officer</p>
-            <p class="text-base mb-0">Former ATP CEO and Bridgewater co-Chief Investment Officer for Sustainable Investing to lead Acumen's $500M impact investments.</p>
+            <p class="text-base leading-extra-tight mb-0">Former ATP CEO and Bridgewater co-Chief Investment Officer for Sustainable Investing to lead Acumen's $500M impact investments.</p>
             @svg('images.arrow-right', 'w-3.5 h-auto transition-transform duration-300 group-hover:translate-x-2.5')
           </div>
         </div>
