@@ -14,7 +14,7 @@
 >
   <div class="container-fluid flex flex-col gap-7.5 py-15">
 
-    <p class="text-xl font-bold mb-0">{!! __('Featured', 'sage') !!}</p>
+    <p class="text-xl leading-extra-tight font-bold mb-0">{!! __('Featured', 'sage') !!}</p>
 
     <div class="grid grid-cols-4 gap-[20px]">
 
@@ -39,7 +39,7 @@
                 <p class="text-base font-semibold leading-extra-tight mb-0">{!! $main['title'] !!}</p>
               @endif
               @if (!empty($main['excerpt']) || !empty($main['auto_excerpt']))
-                <p class="text-base mb-0">{!! $main['excerpt'] ?: ($main['auto_excerpt'] ?? '') !!}</p>
+                <p class="text-base leading-extra-tight mb-0">{!! $main['excerpt'] ?: ($main['auto_excerpt'] ?? '') !!}</p>
               @endif
               @svg('images.arrow-right', 'w-3.5 h-auto transition-transform duration-300 group-hover:translate-x-2.5')
             </div>
