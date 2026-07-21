@@ -27,10 +27,15 @@ class MainNavItemInfo extends Field
                 'label' => __('Image', 'sage'),
                 'instructions' => __('For submenu items only')
             ])
+            ->addText('featured_heading', [
+                'label' => __('Featured Heading', 'sage'),
+                'instructions' => __('Heading shown above the featured posts in the Knowledge Hub submenu.', 'sage'),
+                'default_value' => __('Featured', 'sage'),
+            ])
             ->addRelationship('featured_posts', [
                 'label' => __('Featured Knowledge Hub Posts', 'sage'),
                 'instructions' => __(
-                    'Optional. Select exactly 3 posts (News, Blog, Report, Case Study). First = large card (image + description). Next two = title only. Used in this item\'s submenu. Leave empty for the classic submenu layout.',
+                    'Optional. Select exactly 3 posts (News, Blog, Report, Case Study). First = large card (image + description). Next two = title only. Leave empty for the classic submenu layout.',
                     'sage'
                 ),
                 'post_type' => ['news', 'post', 'report', 'case-study'],
