@@ -2,11 +2,11 @@
   <x-preview :block="$block" />
 @else
   @if (!empty($image))
-    <div class="my-5 lg:my-15 lg:mx-20 {{ $block->classes }}">
+    <div class="container-fluid my-5 lg:my-15 lg:mx-20 {{ $block->classes }}">
       <figure class="flex-1 h-fit">
         <div
           class="overflow-hidden lg:rounded-10 max-h-171.25"
-          animate-image="reveal"
+          animate-image="reveal" 
         >
           <x-image
             :id="$image['id']"
