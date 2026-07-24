@@ -14,7 +14,7 @@
 >
   <div class="container-fluid flex flex-col gap-7.5 py-15">
 
-    <p class="text-xl leading-extra-tight font-bold mb-0">{!! __('Featured', 'sage') !!}</p>
+    <p class="text-xl leading-extra-tight font-bold mb-0">{!! $item['featured_heading'] ?: __('Featured', 'sage') !!}</p>
 
     <div class="grid grid-cols-4 gap-[20px]">
 
