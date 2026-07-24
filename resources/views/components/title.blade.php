@@ -92,7 +92,7 @@
   </div>
 
   @if (!empty($image) && (empty($imagePosition) || $imagePosition !== 'side'))
-    <div class="{{ $imagePosition === 'above' ? 'order-first mb-8' : 'order-last mt-8' }}">
+    <div class="{{ $imagePosition === 'above' ? 'container-fluid order-first mb-8' : 'container-fluid order-last mt-8' }}">
       <figure class="overflow-hidden relative max-h-171.25">
         <div class="aspect-video">
           <x-parallax-image
@@ -114,7 +114,7 @@
       </figure>
 
       @if (!empty($imageCaption))
-        <figcaption class="mt-6 mb-0 font-serif text-sm container-fluid">
+        <figcaption class="mt-6 mb-0 font-serif text-sm">
           <div class="lg:w-1/2">
             {!! $imageCaption !!}
           </div>
