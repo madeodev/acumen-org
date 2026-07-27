@@ -40,7 +40,8 @@
         <ul>
 
 
-          {{-- Static Knowledge Hub item --}}
+          {{-- Static Knowledge Hub item (hidden) --}}
+          {{--
           <li
             x-data="{ isButton: false }"
             class="w-full transition-colors my-2.5"
@@ -61,6 +62,7 @@
             </div>
             @include('partials.subnav-mobile-static')
           </li>
+          --}}
 
           @foreach ($main_nav as $item)
             {{-- Normal links --}}
