@@ -35,7 +35,8 @@
     >
       <ul class="flex items-baseline gap-10">
 
-      {{-- Static Knowledge Hub Nav Item --}}
+      {{-- Static Knowledge Hub Nav Item (hidden) --}}
+      {{--
         <li>
           <x-button
             x-ref="button-knowledge-hub"
@@ -54,6 +55,7 @@
             @include('partials.subnav-desktop-static')
           </template>
         </li>
+      --}}
 
         @foreach ($main_nav as $item)
           {{-- Normal links --}}
