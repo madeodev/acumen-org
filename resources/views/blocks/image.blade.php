@@ -2,7 +2,7 @@
   <x-preview :block="$block" />
 @else
   @if (!empty($images))
-    <div class="my-5 lg:my-15 lg:mx-20 {{ $count > 1 ? 'grid grid-cols-1 md:grid-cols-2 gap-7.5' : '' }}">
+    <div class="container-fluid my-5 lg:my-15 {{ $count > 1 ? 'grid grid-cols-1 md:grid-cols-2 gap-7.5' : '' }}">
       @foreach ($images as $image)
         <figure class="flex-1 h-fit">
           <div
