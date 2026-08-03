@@ -46,9 +46,14 @@ class Filters
 
         $prefilter = [];
         foreach ($taxonomies as $tax => $term) {
-            $query_var = htmlspecialchars($term);
+            // Skip non-string query values (e.g. array params from WP admin / block render).
+            if (!is_string($tax) || (!is_string($term) && !is_numeric($term))) {
+                continue;
+            }
 
-            if (empty($query_var)) {
+            $query_var = htmlspecialchars((string) $term);
+
+            if ($query_var === '') {
                 continue;
             }
 
@@ -61,7 +66,7 @@ class Filters
             $prefilter[] = Term::serialize($term_data);
         }
 
-        if (!empty($taxonomies['content-type'])) {
+        if (!empty($taxonomies['content-type']) && is_string($taxonomies['content-type'])) {
             $prefilter[] = Filters::postTypeFilter($taxonomies['content-type']);
         }
 
