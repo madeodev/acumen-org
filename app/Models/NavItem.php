@@ -37,45 +37,83 @@ class NavItem extends Resource
     }
 
     /**
-     * Serialize featured Knowledge Hub posts when exactly 3 are selected.
+     * Build the featured Knowledge Hub posts.
+     *
+     * The CMS selection is the main feature. The remaining two items are the
+     * latest published Knowledge Hub posts, excluding the selected post.
      *
      * @param mixed $posts
      * @return array
      */
     private function serializeFeaturedPosts($posts): array
     {
-        if (!is_array($posts) || count($posts) !== 3) {
+        if (!is_array($posts) || empty($posts)) {
             return [];
         }
 
-        $serialized = collect($posts)
+        $featured = $posts[0];
+
+        if (!$featured instanceof \WP_Post) {
+            $featured = get_post($featured);
+        }
+
+        $allowedPostTypes = ['news', 'post', 'report', 'case-study'];
+
+        if (
+            empty($featured) ||
+            $featured->post_status !== 'publish' ||
+            !in_array($featured->post_type, $allowedPostTypes, true)
+        ) {
+            return [];
+        }
+
+        $latestPosts = get_posts([
+            'post_type' => $allowedPostTypes,
+            'post_status' => 'publish',
+            'posts_per_page' => 2,
+            'post__not_in' => [$featured->ID],
+            'orderby' => 'date',
+            'order' => 'DESC',
+            'ignore_sticky_posts' => true,
+            'suppress_filters' => false,
+        ]);
+
+        if (count($latestPosts) !== 2) {
+            return [];
+        }
+
+        return collect([$featured, ...$latestPosts])
             ->map(function ($post) {
-                if (!$post instanceof \WP_Post) {
-                    $post = get_post($post);
-                }
-
-                if (empty($post) || $post->post_status !== 'publish') {
-                    return null;
-                }
-
-                switch ($post->post_type) {
-                    case 'news':
-                        return News::serialize($post);
-
-                    case 'report':
-                        return Report::serialize($post);
-
-                    case 'case-study':
-                        return CaseStudy::serialize($post);
-
-                    default:
-                        return Blog::serialize($post);
-                }
+                return $this->serializeKnowledgeHubPost($post);
             })
             ->filter()
             ->values()
             ->toArray();
+    }
 
-        return count($serialized) === 3 ? $serialized : [];
+    /**
+     * Serialize a Knowledge Hub post with its post-type model.
+     *
+     * @param \WP_Post $post
+     * @return array|null
+     */
+    private function serializeKnowledgeHubPost(\WP_Post $post): ?array
+    {
+        switch ($post->post_type) {
+            case 'news':
+                return News::serialize($post);
+
+            case 'report':
+                return Report::serialize($post);
+
+            case 'case-study':
+                return CaseStudy::serialize($post);
+
+            case 'post':
+                return Blog::serialize($post);
+
+            default:
+                return null;
+        }
     }
 }
