@@ -33,15 +33,17 @@ class MainNavItemInfo extends Field
                 'default_value' => __('Featured', 'sage'),
             ])
             ->addRelationship('featured_posts', [
-                'label' => __('Featured Knowledge Hub Posts', 'sage'),
+                'label' => __('Featured Knowledge Hub Post', 'sage'),
                 'instructions' => __(
-                    'Optional. Select exactly 3 posts (News, Blog, Report, Case Study). First = large card (image + description). Next two = title only. Leave empty for the classic submenu layout.',
+                    'Optional. Select the main featured post (News, Blog, Report, or Case Study). ' .
+                    'The next two cards are populated automatically with the latest Knowledge Hub posts. ' .
+                    'Leave empty for the classic submenu layout.',
                     'sage'
                 ),
                 'post_type' => ['news', 'post', 'report', 'case-study'],
                 'filters' => ['search', 'post_type'],
                 'min' => 0,
-                'max' => 3,
+                'max' => 1,
                 'return_format' => 'object',
             ]);
 
