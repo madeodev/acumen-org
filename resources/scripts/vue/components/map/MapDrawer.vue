@@ -24,7 +24,7 @@
         >
           <inline-svg
             aria-hidden="true"
-            :src="'/wp-content/themes/sage/public/images/close.fda38d.svg'"
+            :src="assets.close"
             class="h-2.5 w-2.5"
           />
           <span
@@ -121,7 +121,7 @@
             <inline-svg
               aria-hidden="true"
               class="w-3 h-auto"
-              :src="'/wp-content/themes/sage/public/images/arrow-left.2f96d1.svg'"
+              :src="assets.arrowLeft"
             />
           </button>
           <button
@@ -132,7 +132,7 @@
             <inline-svg
               aria-hidden="true"
               class="w-3 h-auto"
-              :src="'/wp-content/themes/sage/public/images/arrow-right.465f57.svg'"
+              :src="assets.arrowRight"
             />
           </button>
         </div>
@@ -178,7 +178,7 @@
                   />
                   <inline-svg
                     aria-hidden="true"
-                    :src="'/wp-content/themes/sage/public/images/arrow-right.465f57.svg'"
+                    :src="assets.arrowRight"
                     class="w-3 h-auto"
                   />
                 </span>
@@ -227,6 +227,11 @@ const props = defineProps({
     type: String,
     require: true,
     default: '',
+  },
+  assets: {
+    type: Object,
+    required: true,
+    default: () => ({}),
   },
 });
 
