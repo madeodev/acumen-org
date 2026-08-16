@@ -43,6 +43,15 @@ Roots Sage WordPress theme with Acorn, ACF Composer field groups in PHP, Bud fro
 
 **Not related:** Knowledge Hub Hero block / post grids — this is main navigation only.
 
+## Interactive Map
+
+ACF block `acf/interactive-map` (`app/Blocks/InteractiveMap.php`) loads all Region and Problem CPTs, then mounts Vue on `.interactive-map-vue`.
+
+- Vue: `resources/scripts/vue/interactive-map.js` → `InteractiveMap.vue` + `MapDrawer.vue`
+- World map is `resources/images/world-map.svg`, hashed in `public/` (Bud). Country `<g id="...">` IDs must match ACF country codes.
+- PHP inlines the current hashed SVG into a Vue slot (`map_svg` from `\Roots\asset('images/world-map.svg')->contents()`). Icon URLs go through an `assets` prop (`->uri()`). Never hardcode hashed filenames in Vue — a stale hash 404s silently (`vue-inline-svg` does not throw).
+- After map Vue/SVG changes, run `npm run build` so `public/js/interactiveMap.*.js` and `entrypoints.json` update (filename hash cache-busts).
+- Related programs load from `GET /wp-json/sage-api/v2/programs/` when a drawer opens.
 
 ## User Defined Namespaces
 

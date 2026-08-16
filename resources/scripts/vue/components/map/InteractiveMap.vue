@@ -1,12 +1,17 @@
 <template>
   <div class="relative pt-8 pb-25">
     <div class="container-fluid min-h-[600px]">
-      <div class="lg:-mr-20">
-        <inline-svg
-          aria-hidden="true"
-          class="w-full h-auto"
-          :src="'/wp-content/themes/sage/public/images/world-map.888da8.svg'"
-        />
+      <div
+        aria-hidden="true"
+        class="lg:-mr-20 [&>svg]:w-full [&>svg]:h-auto"
+      >
+        <slot name="map">
+          <inline-svg
+            v-if="assets.map"
+            class="w-full h-auto"
+            :src="assets.map"
+          />
+        </slot>
       </div>
 
       <div class="md:w-80 md:absolute md:top-20 md:bottom-0 overflow-auto px-1 pt-1">
@@ -16,6 +21,7 @@
           :uid="key"
           :open="openAccordion == key"
           :title="labels[key]"
+          :icon-src="assets.chevronDown"
           @toggle-accordion="handleAccordionToggle"
         >
           <ul>
@@ -42,7 +48,7 @@
                   v-show="currentHighlight?.ID == post.ID"
                   aria-hidden="true"
                   class="h-3.5 w-3.5 mx-0.75 transition-opacity"
-                  :src="'/wp-content/themes/sage/public/images/open-in-full.8cd416.svg'"
+                  :src="assets.open"
                 />
               </button>
             </li>
@@ -59,6 +65,7 @@
         :data="post"
         :endpoint="endpoint"
         :labels="labels"
+        :assets="assets"
         tabindex="-1"
         class="absolute right-0 top-0 left-auto ml-16 z-infinity max-w-screen-2xl w-90vw"
         @close-drawer="closeDrawer"
@@ -95,6 +102,11 @@ const props = defineProps({
     type: Object,
     require: true,
     default: () => {},
+  },
+  assets: {
+    type: Object,
+    required: true,
+    default: () => ({}),
   },
 });
 
