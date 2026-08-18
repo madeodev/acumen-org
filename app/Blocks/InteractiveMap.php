@@ -81,7 +81,6 @@ class InteractiveMap extends Block
         $problemLabel = CustomPostTypeProvider::getPostTypeLabels('problem');
         $regionLabel = CustomPostTypeProvider::getPostTypeLabels('region');
         $mapAsset = \Roots\asset('images/world-map.svg');
-        $mapSvg = preg_replace('/^<\?xml[^>]*\?>\s*/i', '', $mapAsset->contents() ?: '');
 
         return [
             'data' => $this->data(),
@@ -103,7 +102,6 @@ class InteractiveMap extends Block
                 'arrowRight' => \Roots\asset('images/arrow-right.svg')->uri(),
                 'chevronDown' => \Roots\asset('images/chevron-down.svg')->uri(),
             ],
-            'map_svg' => $mapSvg,
             'countries' => AcfUtils::countryOptions(),
         ];
     }

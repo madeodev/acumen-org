@@ -1,17 +1,13 @@
 <template>
   <div class="relative pt-8 pb-25">
     <div class="container-fluid min-h-[600px]">
-      <div
-        aria-hidden="true"
-        class="lg:-mr-20 [&>svg]:w-full [&>svg]:h-auto"
-      >
-        <slot name="map">
-          <inline-svg
-            v-if="assets.map"
-            class="w-full h-auto"
-            :src="assets.map"
-          />
-        </slot>
+      <div class="lg:-mr-20">
+        <inline-svg
+          v-if="assets.map"
+          aria-hidden="true"
+          class="interactive-map-svg w-full h-auto"
+          :src="assets.map"
+        />
       </div>
 
       <div class="md:w-80 md:absolute md:top-20 md:bottom-0 overflow-auto px-1 pt-1">
@@ -208,6 +204,25 @@ document.addEventListener('keydown', (e) => {
 </script>
 
 <style>
+.interactive-map-svg .cls-2,
+.interactive-map-svg .cls-5,
+.interactive-map-svg .cls-6,
+.interactive-map-svg .cls-7,
+.interactive-map-svg .cls-8 {
+  fill: #dad4c9;
+}
+
+.interactive-map-svg .cls-5,
+.interactive-map-svg .cls-6,
+.interactive-map-svg .cls-7,
+.interactive-map-svg .cls-8 {
+  stroke: #f7f2ea;
+}
+
+.interactive-map-svg .cls-4 {
+  fill: rgba(218, 212, 201, 0);
+}
+
 .currentCountry path:not(.patternFill) {
   transition: fill 300ms, stroke 300ms;
 }
