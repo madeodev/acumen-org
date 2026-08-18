@@ -7,11 +7,7 @@
       :sections='@json($data)'
       :assets='@json($assets)'
       endpoint='{{$endpoint}}'
-    >
-      <template v-slot:map>
-        {!! $map_svg !!}
-      </template>
-    </interactive-map>
+    ></interactive-map>
   </section>
 
 @endif
