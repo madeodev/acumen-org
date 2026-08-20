@@ -15,6 +15,8 @@
               :placeholder="$placeholder ?? ''"
               :webm="$webm ?? ''"
               :mp4="$mp4 ?? ''"
+              :aria-label="$headline ?? ''"
+              :decorative="empty($headline)"
             />
           @endif
         </div>

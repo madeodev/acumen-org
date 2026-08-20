@@ -17,6 +17,12 @@
             @if(!empty($thumbnail_url))
                 poster="{{$thumbnail_url}}"
             @endif
+            @if(!empty($accessibleLabel))
+                aria-label="{{ $accessibleLabel }}"
+            @elseif($decorative)
+                aria-hidden="true"
+                role="presentation"
+            @endif
         >
             {{-- WEBM file --}}
             @if(!empty($webm['url']))
@@ -54,10 +60,14 @@
         @endif
 
         <button
+            type="button"
             class="absolute inset-0 focus-visible:-outline-offset-4 focus-visible:outline-white w-full"
             @click="playPause()"
             :aria-pressed="isPlaying"
             :aria-controls="$id('video')"
+            :aria-label="isPlaying ?
+                '{!! __('Pause video', 'video') !!}' :
+                '{!! __('Play video', 'video') !!}'"
             :title="isPlaying ?
                 '{!! __('Click to pause video', 'video') !!}' :
                 '{!! __('Click to play video', 'video') !!}'"
