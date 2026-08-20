@@ -5,8 +5,9 @@
     <interactive-map
       :labels='@json($labels)'
       :sections='@json($data)'
+      :assets='@json($assets)'
       endpoint='{{$endpoint}}'
-    />
+    ></interactive-map>
   </section>
 
 @endif

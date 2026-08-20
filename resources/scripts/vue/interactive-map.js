@@ -1,14 +1,22 @@
 import { createApp } from 'vue';
 import InteractiveMap from './components/map/InteractiveMap.vue';
 
-const app = document.querySelectorAll('.interactive-map-vue');
+function mountMaps() {
+  document.querySelectorAll('.interactive-map-vue').forEach((el) => {
+    if (el.__vue_app__) {
+      return;
+    }
 
-app.forEach((el) => {
-  const app = createApp({
-    components: {
-      InteractiveMap,
-    },
+    createApp({
+      components: {
+        InteractiveMap,
+      },
+    }).mount(el);
   });
+}
 
-  app.mount(el);
-});
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', mountMaps);
+} else {
+  mountMaps();
+}

@@ -20,7 +20,7 @@
             aria-hidden="true"
             class="transition-all h-1.5"
             :class="open ? 'rotate-180' : ''"
-            :src="'/wp-content/themes/sage/public/images/chevron-down.d65226.svg'"
+            :src="iconSrc"
           />
         </span>
       </button>
@@ -60,6 +60,10 @@ const props = defineProps({
   uid: {
     type: String,
     require: true,
+    default: '',
+  },
+  iconSrc: {
+    type: String,
     default: '',
   },
 });

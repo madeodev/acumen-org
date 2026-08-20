@@ -3,9 +3,10 @@
     <div class="container-fluid min-h-[600px]">
       <div class="lg:-mr-20">
         <inline-svg
+          v-if="assets.map"
           aria-hidden="true"
-          class="w-full h-auto"
-          :src="'/wp-content/themes/sage/public/images/world-map.888da8.svg'"
+          class="interactive-map-svg w-full h-auto"
+          :src="assets.map"
         />
       </div>
 
@@ -16,6 +17,7 @@
           :uid="key"
           :open="openAccordion == key"
           :title="labels[key]"
+          :icon-src="assets.chevronDown"
           @toggle-accordion="handleAccordionToggle"
         >
           <ul>
@@ -42,7 +44,7 @@
                   v-show="currentHighlight?.ID == post.ID"
                   aria-hidden="true"
                   class="h-3.5 w-3.5 mx-0.75 transition-opacity"
-                  :src="'/wp-content/themes/sage/public/images/open-in-full.8cd416.svg'"
+                  :src="assets.open"
                 />
               </button>
             </li>
@@ -59,6 +61,7 @@
         :data="post"
         :endpoint="endpoint"
         :labels="labels"
+        :assets="assets"
         tabindex="-1"
         class="absolute right-0 top-0 left-auto ml-16 z-infinity max-w-screen-2xl w-90vw"
         @close-drawer="closeDrawer"
@@ -95,6 +98,11 @@ const props = defineProps({
     type: Object,
     require: true,
     default: () => {},
+  },
+  assets: {
+    type: Object,
+    required: true,
+    default: () => ({}),
   },
 });
 
@@ -196,6 +204,25 @@ document.addEventListener('keydown', (e) => {
 </script>
 
 <style>
+.interactive-map-svg .cls-2,
+.interactive-map-svg .cls-5,
+.interactive-map-svg .cls-6,
+.interactive-map-svg .cls-7,
+.interactive-map-svg .cls-8 {
+  fill: #dad4c9;
+}
+
+.interactive-map-svg .cls-5,
+.interactive-map-svg .cls-6,
+.interactive-map-svg .cls-7,
+.interactive-map-svg .cls-8 {
+  stroke: #f7f2ea;
+}
+
+.interactive-map-svg .cls-4 {
+  fill: rgba(218, 212, 201, 0);
+}
+
 .currentCountry path:not(.patternFill) {
   transition: fill 300ms, stroke 300ms;
 }
