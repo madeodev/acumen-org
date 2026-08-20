@@ -74,6 +74,8 @@
             :placeholder="$placeholder ?? ''"
             :webm="$webm ?? ''"
             :mp4="$mp4 ?? ''"
+            :aria-label="$title ?? ''"
+            :decorative="empty($title)"
           />
         @endif
 
