@@ -3,6 +3,7 @@
 
     <figure
         x-data="localVideo({{$preload}})"
+        x-id="['video']"
         x-intersect.margin.400px.once="load"
         x-intersect:enter="videoIsVisible"
         x-intersect:leave="videoIsNotVisible"
@@ -11,13 +12,13 @@
         <video 
             autoplay muted loop playsinline 
             x-ref="video"
-            id="{{ $videoId }}"
+            :id="$id('video')"
             class="absolute inset-0 overflow-hidden h-full w-full object-cover"
             @if(!empty($thumbnail_url))
                 poster="{{$thumbnail_url}}"
             @endif
             @if(!empty($accessibleLabel))
-                aria-label="{{ e($accessibleLabel) }}"
+                aria-label="{{ $accessibleLabel }}"
             @elseif($decorative)
                 aria-hidden="true"
                 role="presentation"
@@ -62,11 +63,11 @@
             type="button"
             class="absolute inset-0 focus-visible:-outline-offset-4 focus-visible:outline-white w-full"
             @click="playPause()"
-            aria-controls="{{ $videoId }}"
-            aria-pressed="{{ $preload ? 'true' : 'false' }}"
-            aria-label="{{ e($preload ? $pauseAriaLabel : $playAriaLabel) }}"
             :aria-pressed="isPlaying"
-            :aria-label="isPlaying ? @json($pauseAriaLabel) : @json($playAriaLabel)"
+            :aria-controls="$id('video')"
+            :aria-label="isPlaying ?
+                '{!! __('Pause video', 'video') !!}' :
+                '{!! __('Play video', 'video') !!}'"
             :title="isPlaying ?
                 '{!! __('Click to pause video', 'video') !!}' :
                 '{!! __('Click to play video', 'video') !!}'"
