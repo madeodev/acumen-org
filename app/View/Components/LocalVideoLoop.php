@@ -6,6 +6,8 @@ use Illuminate\View\Component;
 
 class LocalVideoLoop extends Component
 {
+    private static int $instanceCount = 0;
+
     /**.
      *
      * @var string
@@ -23,6 +25,24 @@ class LocalVideoLoop extends Component
      * @var string
      */
     public $accessibleLabel;
+
+    /**.
+     *
+     * @var string
+     */
+    public $videoId;
+
+    /**.
+     *
+     * @var string
+     */
+    public $playAriaLabel;
+
+    /**.
+     *
+     * @var string
+     */
+    public $pauseAriaLabel;
 
     /**
      * Create a new component instance.
@@ -44,9 +64,13 @@ class LocalVideoLoop extends Component
         public bool $decorative = true,
     )
     {
+        self::$instanceCount++;
+        $this->videoId = 'video-' . self::$instanceCount;
         $this->thumbnail_url = empty($placeholder) ? '' : wp_get_attachment_image_url($placeholder, 'medium_large');
         $this->caption = $this->getVideoDescription($webm, $mp4);
         $this->accessibleLabel = $this->getAccessibleLabel();
+        $this->playAriaLabel = __('Play video', 'video');
+        $this->pauseAriaLabel = __('Pause video', 'video');
     }
 
     /**
