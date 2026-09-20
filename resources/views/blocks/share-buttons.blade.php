@@ -3,9 +3,9 @@
 @else
   <section class="{{ $block->classes }} text-container border-black border-t mt-15 mb-7.5 py-7.5">
     <div class="py-2.5 flex gap-10 items-center" animate>
-      <h2 class="h4 m-0">
+      <p class="h4 m-0">
         {!! __('Share', 'share_buttons') !!}
-      </h2>
+      </p>
       <ul class="flex gap-2 items-center" x-data="shareButtons('{{$copied}}', '{{$copy_failed}}')">
 
         @foreach ($share_options as $option)

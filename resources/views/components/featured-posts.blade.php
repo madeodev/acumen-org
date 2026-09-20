@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 border-b border-black pb-7.5">
       @if (!empty($title))
-        <h2 animate-text>{!! $title !!}</h2>
+        <p animate-text class="h2 mb-0">{!! $title !!}</p>
       @endif
 
       @if (!empty($intro))

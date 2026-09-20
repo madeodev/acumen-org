@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between border-b pb-7.5">
-      <h2 class="mb-7.5 lg:mb-0 mr-4">
+      <p class="h2 mb-7.5 lg:mb-0 mr-4">
         <slot name="title" />
-      </h2>
+      </p>
 
       <search
         class="w-full lg:w-1/2 xl:w-1/4 lg:pl-3.75 xl:pl-14"

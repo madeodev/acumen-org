@@ -4,9 +4,9 @@
   <section class="{{ $block->classes }} text-container my-15">
     <div class="{{$colors->classes('wrapper')}} px-5 md:px-20 py-15 md:pt-20 md:pb-25 flex flex-col gap-12.5">
       @if(!empty($text))
-        <h2 animate-text>
+        <p animate-text class="h2 mb-0">
           {!! $text !!}
-        </h2>
+        </p>
       @endif
       @if(!empty($button))
         <div animate>
