@@ -19,6 +19,7 @@ class GravityFormsProvider extends ServiceProvider
         add_filter('gform_disable_css', '__return_true');
         add_filter('gform_field_validation', [&$this, 'updateValidationMessage'], 10, 3);
         add_filter('gform_form_settings', [&$this, 'setDefaultFormSettings'], 10, 2);
+        add_filter('gform_get_form_filter_1', [&$this, 'labelNewsletterConsentDescription']);
     }
 
     /**
@@ -125,6 +126,19 @@ class GravityFormsProvider extends ServiceProvider
         $settings[__('Form Options', 'gravityforms')]['honey_pot'] = true;
 
         return $settings;
+    }
+
+    /**
+     * Name the focusable consent description in the newsletter form.
+     */
+    public function labelNewsletterConsentDescription($formHtml)
+    {
+        return preg_replace(
+            '/(<div\b[^>]*\bid=(["\'])gfield_consent_description_1_17\2[^>]*>\s*<div\b[^>]*\btabindex=(["\'])0\3[^>]*)(>)/i',
+            '$1 role="region" aria-label="Newsletter consent information"$4',
+            $formHtml,
+            1
+        );
     }
 
     /**

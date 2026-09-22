@@ -11,6 +11,8 @@
         class="swiper w-full h-fit"
         class="w-full h-fit"
         tabindex="0"
+        role="region"
+        aria-label="Featured reports carousel"
         x-ref="swiper"
       >
         <div class="swiper-wrapper">
