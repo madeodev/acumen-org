@@ -16,12 +16,17 @@
         <div class="swiper-wrapper">
           @foreach ($cards as $slide)
             @continue(empty($slide))
-            <div class="swiper-slide h-auto">
+            @php($topicId = !empty($slide['topic']) ? wp_unique_id('carousel-topic-') : null)
+            <div
+              class="swiper-slide h-auto"
+              @if ($topicId) aria-describedby="{{ $topicId }}" @endif
+            >
               <div class="container-fluid flex flex-col h-full md:flex-row gap-y-7.5 py-15 lg:py-20">
                 <div class="flex flex-col gap-10 mr-auto md:pr-10 lg:pr-20 xl:pr-30 w-full">
                   @if (!empty($slide['topic']))
                     <div animate>
                       <x-topic-label
+                        id="{{ $topicId }}"
                         :label="$slide['topic']"
                         :icon="$slide['topic_icon']"
                       />
@@ -43,6 +48,7 @@
                         :link="$slide['button']"
                         color="outline-white"
                         class="w-fit"
+                        :aria-describedby="$topicId"
                       />
                     @endif
 
