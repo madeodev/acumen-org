@@ -152,10 +152,14 @@
     @if (!empty($util_nav))
       <nav
         class="container-fluid flex flex-col gap-5 border-t border-black py-5"
-        aria-label="{{ wp_get_nav_menu_name('utility_navigation') }}"
+        @if (!empty($util_intro))
+          aria-labelledby="utility-nav-mobile-label"
+        @else
+          aria-label="{{ wp_get_nav_menu_name('utility_navigation') }}"
+        @endif
       >
-        @if (!empty($util_nav))
-          <div class="text-sm font-semibold">
+        @if (!empty($util_intro))
+          <div id="utility-nav-mobile-label" class="text-sm font-semibold">
             {!! $util_intro !!}
           </div>
         @endif
