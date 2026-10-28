@@ -50,7 +50,7 @@
         v-html="post.labels.readmore"
       />
       <inline-svg
-        :src="'/wp-content/themes/sage/public/images/arrow-right.465f57.svg'"
+        :src="arrowRight"
         aria-hidden="true"
       />
     </a>
@@ -60,6 +60,7 @@
 <script setup>
 import { computed } from 'vue';
 import InlineSvg from 'vue-inline-svg';
+import arrowRight from '@images/arrow-right.svg';
 import TaxLabel from './TaxLabel.vue';
 import CardImage from './CardImage.vue';
 

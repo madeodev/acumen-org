@@ -11,7 +11,7 @@
       >
         <inline-svg
           aria-hidden="true"
-          :src="'/wp-content/themes/sage/public/images/arrow-left.2f96d1.svg'"
+          :src="arrowLeft"
         />
         <span v-html="labels.prev" />
       </button>
@@ -58,7 +58,7 @@
       >
         <inline-svg
           aria-hidden="true"
-          :src="'/wp-content/themes/sage/public/images/arrow-right.465f57.svg'"
+          :src="arrowRight"
         />
         <span v-html="labels.next" />
       </button>
@@ -69,6 +69,8 @@
 <script setup>
 import { ref, computed } from 'vue';
 import InlineSvg from 'vue-inline-svg';
+import arrowLeft from '@images/arrow-left.svg';
+import arrowRight from '@images/arrow-right.svg';
 
 const pagination = ref(null);
 const emit = defineEmits(['change']);

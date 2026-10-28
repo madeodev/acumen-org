@@ -35,7 +35,7 @@
       />
       <inline-svg
         aria-hidden="true"
-        :src="'/wp-content/themes/sage/public/images/chevron-down.d65226.svg'"
+        :src="chevronDown"
         class="text-current flex-shrink-0"
       />
     </button>
@@ -95,6 +95,7 @@
 import { ref, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import InlineSvg from 'vue-inline-svg';
+import chevronDown from '@images/chevron-down.svg';
 import Scrollbar from "vue3-smooth-scrollbar";
 
 export default {
@@ -158,7 +159,7 @@ export default {
       emit('clear', option);
     }
 
-    return { isOpen, isSelected, close, toggle, select, target, clear };
+    return { isOpen, isSelected, close, toggle, select, target, clear, chevronDown };
   },
 };
 </script>

@@ -20,7 +20,7 @@
           <span v-html="filter.label" />
           <inline-svg
             aria-hidden="true"
-            :src="'/wp-content/themes/sage/public/images/close.fda38d.svg'"
+            :src="closeIcon"
           />
         </button>
       </li>
@@ -38,6 +38,7 @@
 
 <script setup>
 import InlineSvg from 'vue-inline-svg';
+import closeIcon from '@images/close.svg';
 
 const emit = defineEmits(['clear', 'removeSelected']);
 

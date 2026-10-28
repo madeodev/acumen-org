@@ -8,7 +8,7 @@ Roots Sage WordPress theme with Acorn, ACF Composer field groups in PHP, Bud fro
 
 - **Theme PHP:** `app/` (blocks, fields, models, providers, post types)
 - **Views:** `resources/views/`
-- **Assets:** Bud builds `resources/` → `public/`
+- **Assets:** Bud builds `resources/` → `public/`. Vue icons import `@images/*.svg` so the emitted URL matches the hashed file. Do not hardcode `public/images/*.hash.svg`.
 - **ACF:** Code-defined via `log1x/acf-composer` (`app/Fields`, `app/Blocks`, `app/Options`) — not DB field groups
 
 ## Navigation
@@ -42,6 +42,12 @@ Roots Sage WordPress theme with Acorn, ACF Composer field groups in PHP, Bud fro
 - Design mocks kept as: `subnav-desktop-static`, `subnav-mobile-static` (not wired in production nav)
 
 **Not related:** Knowledge Hub Hero block / post grids — this is main navigation only.
+
+### Knowledge Hub Hero posts slider
+
+Vue carousel on `.knowledge-hub-hero-posts-slider-vue` (`KnowledgeHubHeroPostsSlider.vue`, Swiper `slidesPerView: 'auto'`).
+
+Desktop slides use a definite width (`lg:w-636`, token `636` = 39.75rem). `lg:w-auto` made the 49/51 image-and-text split indefinite, so a wide featured image stretched the row and `overflow-hidden` clipped the text. The image is absolutely positioned in its column so its intrinsic size cannot change the card width.
 
 ## Interactive Map
 
