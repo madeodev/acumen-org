@@ -8,7 +8,7 @@
       >
         <card-image
           :image="post.featured_image_html?.card"
-          :icon="'/wp-content/themes/sage/public/images/open-in-full.svg'"
+          :icon="openInFull"
           :classes="classes"
         />
       </a>
@@ -21,7 +21,7 @@
       >
         <card-image
           :image="post.featured_image_html?.card"
-          :icon="'/wp-content/themes/sage/public/images/open-in-full.svg'"
+          :icon="openInFull"
           :classes="classes"
         />
       </button>
@@ -46,7 +46,7 @@
         target="_blank"
       >
         <inline-svg
-          :src="'/wp-content/themes/sage/public/images/linkedin-fill.svg'"
+          :src="linkedinFill"
           aria-hidden="true"
         />
         <span
@@ -97,7 +97,7 @@
       />
       <inline-svg
         aria-hidden="true"
-        :src="'/wp-content/themes/sage/public/images/arrow-right.465f57.svg'"
+        :src="arrowRight"
         class="w-3 h-3"
       />
     </a>
@@ -107,6 +107,9 @@
 <script setup>
 import { computed } from 'vue';
 import InlineSvg from 'vue-inline-svg';
+import openInFull from '@images/open-in-full.svg';
+import linkedinFill from '@images/linkedin-fill.svg';
+import arrowRight from '@images/arrow-right.svg';
 import TaxLabel from './TaxLabel.vue';
 import CardImage from './CardImage.vue';
 

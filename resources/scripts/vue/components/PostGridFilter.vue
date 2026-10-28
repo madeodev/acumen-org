@@ -34,7 +34,7 @@
           <inline-svg
             aria-hidden="true"
             class="transition-transform"
-            :src="'/wp-content/themes/sage/public/images/chevron-down.d65226.svg'"
+            :src="chevronDown"
             :class="{ 'rotate-180': isExpanded }"
           />
         </span>
@@ -169,6 +169,7 @@ import { debounce } from 'lodash';
 import useFetch from '../composables/useFetch';
 import useFilters from '../composables/useFilters';
 import InlineSvg from 'vue-inline-svg';
+import chevronDown from '@images/chevron-down.svg';
 import PostTile from './PostTile.vue';
 import PostLarge from './PostLarge.vue';
 import Pagination from './Pagination.vue';
