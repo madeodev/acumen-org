@@ -53,6 +53,17 @@ ACF block `acf/interactive-map` (`app/Blocks/InteractiveMap.php`) loads all Regi
 - After map Vue/SVG changes, run `npm run build` so `public/js/interactiveMap.*.js` and `entrypoints.json` update (filename hash cache-busts).
 - Related programs load from `GET /wp-json/sage-api/v2/programs/` when a drawer opens.
 
+## Donation tracking (Funraise)
+
+Classy is retired. The theme bridge lives in `resources/views/layouts/app.blade.php` (head, before Funraise create) for Giving Forms `49641` and `49591`.
+
+- `onSetup` → `funraiseFormLoaded` (`form_id` only, once per form per page)
+- `onInfo` → `funraiseFormInfo` (`form_id` only; donor fields are never pushed)
+- `onSuccess` → `funraiseDonation` with `transaction_id`, `value`, `currency`, `form_id`, `form_name`, `frequency`, `recurring`, `payment_type`, `tip_amount`, `base_amount`, and GA4 `items` (`item_name` is the form name, `item_category` is frequency). Deduped by transaction id.
+- `onFailure` → `funraiseDonationFailed` with `form_id` plus `value`, `currency`, and `frequency` when Funraise sends a donation object. Deduped separately from success.
+
+GTM container `GTM-KWQG4Z9L` is not in the theme runtime. The importable workspace file is `gtm/GTM-KWQG4Z9L-retire-classy.json`: Classy folder removed, Funraise purchase enriched, form/info/failure events on `G-V0LRFNH5BY`, and a second purchase tag for Ad Grant property `G-FTSR3M5LED`. Import into a workspace and preview before publishing. Confirm the Ad Grant mirror with Nicole if that property no longer needs donation conversions.
+
 ## User Defined Namespaces
 
 - [Leave blank - user populates]

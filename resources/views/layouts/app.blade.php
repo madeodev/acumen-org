@@ -14,63 +14,161 @@
   <script>
     window.funraise = window.funraise || [];
     window._frProcessedTransactions = window._frProcessedTransactions || [];
+    window._frProcessedFailures = window._frProcessedFailures || [];
+    window._frLoadedForms = window._frLoadedForms || [];
 
+    function funraiseToNumber(v) {
+        if (v == null || v === '') return NaN;
+        return typeof v === 'number' ? v : parseFloat(String(v).replace(/[^0-9.-]+/g, ''));
+    }
+
+    function funraiseNumericOrZero(v) {
+        var n = funraiseToNumber(v);
+        return isNaN(n) ? 0 : n;
+    }
+
+    function funraiseCurrency(donation) {
+        return (donation && donation.currency && donation.currency.name) ? donation.currency.name : 'USD';
+    }
+
+    function funraiseText(v) {
+        return v == null ? '' : String(v);
+    }
+
+    function pushFunraiseEvent(payload) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(payload);
+    }
+
+        
     function pushFunraiseDonationToDataLayer(donor, donation) {
         if (!donation) return;
 
-        var toNumber = function (v) {
-            if (v == null || v === '') return NaN;
-            return typeof v === 'number' ? v : parseFloat(String(v).replace(/[^0-9.-]+/g, ''));
-        };
+        var transactionId = donation.transactionId != null
+            ? String(donation.transactionId).trim()
+            : '';
 
-        var rawTx = donation.transactionId != null ? donation.transactionId : donation.id;
-        var formId = donation.formId != null ? donation.formId : 'unknown_form';
+        var numericValue = funraiseToNumber(donation.amount);
 
-        var dedupeKey;
-        if (rawTx != null && String(rawTx) !== '') {
-            dedupeKey = String(rawTx);
-        } else {
-            var email = donor && donor.email ? String(donor.email) : '';
-            var bucket = Math.floor(Date.now() / 3000);
-            dedupeKey = 'fr:' + formId + ':' + String(donation.amount) + ':' + String(donation.baseAmount) + ':' + email + ':' + bucket;
-        }
+        var currencyCode = donation.currency && donation.currency.name
+            ? String(donation.currency.name).trim().toUpperCase()
+            : '';
 
-        if (window._frProcessedTransactions.indexOf(dedupeKey) !== -1) {
-            console.log('Duplicate prevented', dedupeKey);
+        // Do not create GA4 purchases with invalid tracking data.
+        if (
+            !transactionId ||
+            !Number.isFinite(numericValue) ||
+            numericValue <= 0 ||
+            !/^[A-Z]{3}$/.test(currencyCode)
+        ) {
+            console.warn(
+                '[Funraise] Purchase tracking skipped: invalid transaction data'
+            );
             return;
         }
+
+        // Deduplicate using the real Funraise transaction ID.
+        var dedupeKey = 'funraise:' + transactionId;
+
+        window._frProcessedTransactions =
+            window._frProcessedTransactions || [];
+
+        if (window._frProcessedTransactions.indexOf(dedupeKey) !== -1) {
+            return;
+        }
+
         window._frProcessedTransactions.push(dedupeKey);
 
-        var numericValue = toNumber(donation.amount);
-        var currencyCode = (donation.currency && donation.currency.name) ? donation.currency.name : 'USD';
+        var formId = donation.formId != null
+            ? donation.formId
+            : 'unknown_form';
 
-        var transactionIdForTag = (rawTx != null && String(rawTx) !== '')
-            ? String(rawTx)
-            : ('funraise_test_' + formId + '_' + Date.now());
+        var formName = donation.formName
+            ? String(donation.formName)
+            : 'Donation';
 
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
+        var frequency = funraiseText(donation.frequency);
+
+        var item = {
+            item_id: 'donation_' + formId,
+            item_name: formName,
+            price: numericValue,
+            quantity: 1
+        };
+
+        if (frequency) {
+            item.item_category = frequency;
+        }
+
+        pushFunraiseEvent({
             event: 'funraiseDonation',
-            transaction_id: transactionIdForTag,
-            value: isNaN(numericValue) ? 0 : numericValue,
+            transaction_id: transactionId,
+            value: numericValue,
             currency: currencyCode,
             form_id: formId,
-            // HARDENED: Added strict GA4 ecommerce parameters to prevent production validation drops
-            items: [{ 
-                item_name: 'Donation',
-                item_id: 'donation_' + formId,
-                price: isNaN(numericValue) ? 0 : numericValue,
-                quantity: 1
-            }]
+            form_name: formName,
+            frequency: frequency,
+            recurring: donation.recurring === true,
+            payment_type: funraiseText(donation.paymentType),
+            tip_amount: funraiseNumericOrZero(donation.tipAmount),
+            base_amount: funraiseNumericOrZero(donation.baseAmount),
+            items: [item]
         });
-
-        console.log('✅ dataLayer funraiseDonation successfully pushed:', { transaction_id: transactionIdForTag, value: numericValue });
     }
 
-    // Register listeners for current in-scope forms
+    function pushFunraiseFailureToDataLayer(formId, donation) {
+        var payload = {
+            event: 'funraiseDonationFailed',
+            form_id: (donation && donation.formId != null) ? donation.formId : formId
+        };
+
+        if (donation) {
+            payload.value = funraiseNumericOrZero(donation.amount);
+            payload.currency = funraiseCurrency(donation);
+            if (donation.frequency != null && String(donation.frequency) !== '') {
+                payload.frequency = String(donation.frequency);
+            }
+
+            var rawTx = donation.transactionId != null ? donation.transactionId : donation.id;
+            if (rawTx != null && String(rawTx) !== '') {
+                var dedupeKey = 'fail:' + String(rawTx);
+                window._frProcessedFailures = window._frProcessedFailures || [];
+                if (window._frProcessedFailures.indexOf(dedupeKey) !== -1) {
+                    return;
+                }
+                window._frProcessedFailures.push(dedupeKey);
+            }
+        }
+
+        pushFunraiseEvent(payload);
+    }
+
+    // Register before create — repeat per form (e.g. 49641, 49591)
     [49641, 49591].forEach(function (formId) {
+        window.funraise.push('onSetup', { form: formId }, function () {
+            window._frLoadedForms = window._frLoadedForms || [];
+            if (window._frLoadedForms.indexOf(formId) !== -1) {
+                return;
+            }
+            window._frLoadedForms.push(formId);
+            pushFunraiseEvent({
+                event: 'funraiseFormLoaded',
+                form_id: formId
+            });
+        });
+
+        window.funraise.push('onInfo', { form: formId }, function () {
+            pushFunraiseEvent({
+                event: 'funraiseFormInfo',
+                form_id: formId
+            });
+        });
+
+        window.funraise.push('onFailure', { form: formId }, function (_donor, donation) {
+            pushFunraiseFailureToDataLayer(formId, donation);
+        });
+
         window.funraise.push('onSuccess', { form: formId }, function (donor, donation) {
-            console.log('🚨 Funraise onSuccess event fired live for form:', formId, donation);
             pushFunraiseDonationToDataLayer(donor, donation);
         });
     });
