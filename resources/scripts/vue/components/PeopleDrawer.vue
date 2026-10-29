@@ -39,7 +39,7 @@
                   target="_blank"
                 >
                   <inline-svg
-                    :src="'/wp-content/themes/sage/public/images/linkedin-fill.svg'"
+                    :src="linkedinFill"
                     aria-hidden="true"
                   />
                   <span
@@ -70,7 +70,7 @@
             >
               <inline-svg
                 aria-hidden="true"
-                :src="'/wp-content/themes/sage/public/images/close.fda38d.svg'"
+                :src="closeIcon"
               />
               <span
                 class="sr-only"
@@ -103,6 +103,8 @@ import { computed } from 'vue';
 import TransitionSlideFade from './TransitionSlideFade.vue';
 import TransitionFade from './TransitionFade.vue';
 import InlineSvg from 'vue-inline-svg';
+import linkedinFill from '@images/linkedin-fill.svg';
+import closeIcon from '@images/close.svg';
 import TaxLabel from './TaxLabel.vue';
 
 const emit = defineEmits(['closeDrawer']);

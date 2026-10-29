@@ -37,7 +37,7 @@
               :key="post.ID"
               :aria-posinset="index + 1"
               :aria-setsize="resources.length"
-              class="swiper-slide h-auto w-260 sm:w-344 lg:w-auto lg:max-w-636"
+              class="swiper-slide h-auto w-260 sm:w-344 lg:w-636"
               @mouseenter="hoveredCardIndex = index"
               @mouseleave="hoveredCardIndex = hoveredCardIndex === index ? 0 : hoveredCardIndex"
             >
@@ -49,18 +49,18 @@
                 ]"
               >
                 <!-- Responsive Layout -->
-                <div class="flex flex-col lg:flex-row h-full lg:aspect-hero-card">
+                <div class="flex flex-col lg:flex-row h-full w-full min-w-0 lg:aspect-hero-card">
                   <!-- Featured Image -->
                   <div 
                     v-if="post.featured_image_html?.card"
-                    class="w-full lg:w-49% relative overflow-hidden aspect-4/3 lg:aspect-auto"
+                    class="w-full lg:w-49% lg:shrink-0 min-w-0 relative overflow-hidden aspect-4/3 lg:aspect-auto"
                   >
-                    <div v-html="post.featured_image_html.card" class="scale-125 lg:scale-100 origin-left w-full h-full object-cover">
+                    <div v-html="post.featured_image_html.card" class="absolute inset-0 scale-125 lg:scale-100 origin-left w-full h-full object-cover">
                     </div>
                   </div>
                   
                   <!-- Content -->
-                  <div class="py-12 px-8 flex flex-col flex-grow lg:flex-none lg:justify-between lg:w-51%">
+                  <div class="py-12 px-8 flex flex-col flex-grow min-w-0 lg:flex-none lg:justify-between lg:w-51%">
                     <!-- Taxonomy Terms -->
                     <div class="flex flex-col gap-2 mb-5">
                       <!-- Post Type Taxonomy -->
@@ -121,7 +121,7 @@
             class="w-16 h-16 lg:w-10 lg:h-10 border border-black rounded-full flex items-center justify-center bg-transparent cursor-pointer"
           >
             <inline-svg
-              :src="'/wp-content/themes/sage/public/images/arrow-left.2f96d1.svg'"
+              :src="arrowLeft"
               class="w-5 h-5 lg:w-2.5 lg:h-2.5"
             />
             <span class="sr-only" v-html="labels.navigation.previous"></span>
@@ -133,7 +133,7 @@
             class="w-16 h-16 lg:w-10 lg:h-10 border border-black rounded-full flex items-center justify-center bg-transparent cursor-pointer"
           >
             <inline-svg
-              :src="'/wp-content/themes/sage/public/images/arrow-right.465f57.svg'"
+              :src="arrowRight"
               class="w-5 h-5 lg:w-2.5 lg:h-2.5"
             />
             <span class="sr-only" v-html="labels.navigation.next"></span>
@@ -149,6 +149,8 @@ import { ref, onMounted } from 'vue';
 import useFetch from '../composables/useFetch';
 import useFilters from '../composables/useFilters';
 import InlineSvg from 'vue-inline-svg';
+import arrowLeft from '@images/arrow-left.svg';
+import arrowRight from '@images/arrow-right.svg';
 import TaxLabel from './TaxLabel.vue';
 
 const props = defineProps({
