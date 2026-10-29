@@ -47,7 +47,7 @@
     >
       <span v-html="post.labels.readmore" />
       <inline-svg
-        :src="'/wp-content/themes/sage/public/images/arrow-right.465f57.svg'"
+        :src="arrowRight"
         class="w-3 h-3"
       />
     </a>
@@ -56,6 +56,7 @@
 
 <script setup>
 import InlineSvg from 'vue-inline-svg';
+import arrowRight from '@images/arrow-right.svg';
 import TaxLabel from './TaxLabel.vue';
 
 defineProps({

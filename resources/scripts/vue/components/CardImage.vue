@@ -17,7 +17,7 @@
       aria-hidden="true"
     >
       <inline-svg
-        :src="'/wp-content/themes/sage/public/images/logo.svg'"
+        :src="logo"
         class="p-10 w-full h-full grayscale opacity-30 object-contain"
       />
     </div>
@@ -38,6 +38,7 @@
 
 <script setup>
 import InlineSvg from 'vue-inline-svg';
+import logo from '@images/logo.svg';
 
 defineProps({
   image: {

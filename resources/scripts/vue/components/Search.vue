@@ -27,7 +27,7 @@
         />
         <inline-svg
           aria-hidden="true"
-          :src="'/wp-content/themes/sage/public/images/search.a86847.svg'"
+          :src="searchIcon"
           class="absolute right-6 h-full top-0"
         />
       </button>
@@ -38,6 +38,7 @@
 <script setup>
 import { computed } from 'vue';
 import InlineSvg from 'vue-inline-svg';
+import searchIcon from '@images/search.svg';
 
 const emit = defineEmits(['load', 'submit']);
 
