@@ -49,6 +49,16 @@ Vue carousel on `.knowledge-hub-hero-posts-slider-vue` (`KnowledgeHubHeroPostsSl
 
 Desktop slides use a definite width (`lg:w-636`, token `636` = 39.75rem). `lg:w-auto` made the 49/51 image-and-text split indefinite, so a wide featured image stretched the row and `overflow-hidden` clipped the text. The image is absolutely positioned in its column so its intrinsic size cannot change the card width.
 
+## Report header button
+
+`report_info` side panel (`app/Fields/ReportInfo.php`) has `report_button_type` (`file` default / `anchor`). `App\Models\Report::toArray()` builds `title_button`, which `x-title` renders through `x-button`:
+
+- `file`: the `report_file` array, with `report_button_label` overriding the title (download button).
+- `anchor`: `['url' => '#' . report_button_anchor, 'title' => label ?: 'Learn more']`. A leading `#` is stripped, and an empty anchor means no button. `x-button` treats `#id` as an internal `_self` link.
+- Older reports with no saved type fall back to `file`.
+
+The Form block (`app/Blocks/Form.php`) has `supports.anchor = true`. Editors set Advanced → HTML anchor, and the view renders it as `id` on the `<section>`. `html` uses `motion-safe:scroll-smooth` (`resources/styles/common/global.css`). The header is not sticky, so no scroll offset is needed.
+
 ## Interactive Map
 
 ACF block `acf/interactive-map` (`app/Blocks/InteractiveMap.php`) loads all Region and Problem CPTs, then mounts Vue on `.interactive-map-vue`.
