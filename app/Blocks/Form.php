@@ -62,7 +62,7 @@ class Form extends Block
         'align_text' => false,
         'align_content' => false,
         'full_height' => false,
-        'anchor' => false,
+        'anchor' => true,
         'mode' => true,
         'multiple' => true,
         'jsx' => true,
@@ -80,6 +80,7 @@ class Form extends Block
             'intro' => get_field('introduction') ?? '',
             'form' => GravityForms::getFormForDisplay(get_field('form_id') ?? ''),
             'image' => get_field('image') ?? null,
+            'anchor' => $this->block->anchor ?? '',
         ];
     }
 

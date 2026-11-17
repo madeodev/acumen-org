@@ -1,7 +1,7 @@
 @if ($block->preview)
   <x-preview :block="$block" />
 @else
-  <section class="{{ $block->classes }} py-20 bg-tulip">
+  <section @if (!empty($anchor)) id="{{ $anchor }}" @endif class="{{ $block->classes }} py-20 bg-tulip">
     <div class="container-fluid">
       <div class="flex flex-col xl:flex-row bg-stone rounded-card overflow-hidden">
         <div class="xl:w-2/3">

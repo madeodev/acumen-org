@@ -30,12 +30,26 @@ class ReportInfo extends Field
                 'label' => __('External URL', 'sage'),
                 'instructions' => __('If an external url is added, this report will open that link instead of the report page.'),
             ])
+            ->addRadio('report_button_type', [
+                'label' => __('Header Button Type', 'sage'),
+                'choices' => [
+                    'file' => __('Media/Report file', 'sage'),
+                    'anchor' => __('Anchor link on this page', 'sage'),
+                ],
+                'default_value' => 'file',
+            ])
             ->addFile('report_file', [
                 'label' => __('Media/Report', 'sage'),
             ])
+                ->conditional('report_button_type', '!=', 'anchor')
+            ->addText('report_button_anchor', [
+                'label' => __('Anchor ID', 'sage'),
+                'instructions' => __('Enter the HTML anchor set on the target block (e.g. report-form), without #.', 'sage'),
+            ])
+                ->conditional('report_button_type', '==', 'anchor')
             ->addText('report_button_label', [
                 'label' => __('Report Button Label', 'sage'),
-                'instructions' => __('Optional. If not set, the filename of the report file will be used.', 'sage'),
+                'instructions' => __('Optional. For a file, the filename is used if not set. For an anchor link, "Learn more" is used if not set.', 'sage'),
             ])
             ->addFields($this->get(MediaFormat::class))
             ->addTaxonomy('type', [

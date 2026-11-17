@@ -13,11 +13,21 @@ class Report extends Post
             $parent['topics'][] = $year;
         }
 
-        $report = get_field('report_file', $this->id) ?: [];
         $buttonLabel = get_field('report_button_label', $this->id) ?? '';
 
-        if (!empty($buttonLabel) && !empty($report)) {
-            $report['title'] = $buttonLabel;
+        if ((get_field('report_button_type', $this->id) ?: 'file') === 'anchor') {
+            $anchor = ltrim(trim((string) get_field('report_button_anchor', $this->id)), '#');
+            $report = $anchor ? [
+                'url' => '#' . $anchor,
+                'title' => $buttonLabel ?: __('Learn more', 'sage'),
+                'target' => '',
+            ] : [];
+        } else {
+            $report = get_field('report_file', $this->id) ?: [];
+
+            if (!empty($buttonLabel) && !empty($report)) {
+                $report['title'] = $buttonLabel;
+            }
         }
 
         return [
